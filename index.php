@@ -1,12 +1,20 @@
 <?php include_once 'header.php';?>
 <div class="container">
-    <div class="p-5 mb-4 bg-light rounded-3">
-      <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Custom jumbotron</h1>
-        <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-        <button class="btn btn-primary btn-lg" type="button">Example button</button>
-      </div>
-</div>
+
+    <div class="mt-4 p-5 mb-4">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Search Donations</h1>
+            <p class="col-md-8 fs-4 mb-5">Here you can find donations by location</p>
+
+            <form class="align-items-center bg-body d-flex p-4 shadow" method="post">
+                <div class="input-group input-group-lg me-3">
+                    <input id="push-geo-location" type="text" class="form-control border-end-0" name="location" placeholder="Enter your full address">
+                    <a id="get-current-location" class="bg-body input-group-text" title="Autofill your current location"><i class="bi bi-geo-alt"></i></a>
+                </div>
+                <button class="btn btn-lg btn-primary w-25" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
 
     <div class="row align-items-md-stretch">
       <div class="col-md-6">

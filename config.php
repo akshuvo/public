@@ -1,7 +1,7 @@
 <?php
 
 // ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
+/** The name of the database for Project */
 define( 'DB_NAME', 'local' );
 
 /** MySQL database username */
@@ -18,3 +18,12 @@ define( 'DB_CHARSET', 'utf8' );
 
 /** The Database Collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
+
+ 
+/* Attempt to connect to MySQL database */
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+ 
+// Check connection
+if( $mysqli === false ){
+    die("ERROR: Could not connect. " . $mysqli->connect_error);
+}

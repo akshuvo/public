@@ -1,8 +1,7 @@
 <!-- Start Footer -->
-
-<footer class="py-3 my-4">
-	<div class="border-bottom"></div>
-    <div class="container">
+<div class="border-bottom mt-4"></div>
+<footer class="py-3">
+	    <div class="container">
         <p class="text-center text-muted m-0">©2022 All Rights Reserved</p>
     </div>
 </footer>
