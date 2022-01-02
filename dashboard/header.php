@@ -18,6 +18,11 @@ if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
 	exit;
 }
 
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if( !is_logged_in() ){
+    header("location: ../login.php");
+    exit;
+}
 
 ?>
 <!DOCTYPE html>

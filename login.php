@@ -5,7 +5,7 @@ if( is_logged_in() ){
     header("location: welcome.php");
     exit;
 }
- 
+
 // Include config file
 require_once "config.php";
  
