@@ -1,7 +1,7 @@
 <?php include_once 'header.php';?>
 <div class="container">
 
-    <div class="mt-4 p-5 mb-4">
+    <div class="mt-4 p-0 p-md-5 mb-4">
         <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold">Search Donations</h1>
             <p class="col-md-8 fs-4 mb-5">Here you can find donations by location</p>

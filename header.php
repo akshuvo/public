@@ -17,6 +17,8 @@ if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
 	header("location: login.php");
 	exit;
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +30,7 @@ if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
     <link rel="stylesheet" href="assets/font/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/custom.css">
 </head>
-<body>
+<body class="<?php echo get_body_classes(); ?>">
 
 <!-- Start Header -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">

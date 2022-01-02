@@ -19,3 +19,34 @@ function is_logged_in(){
 function get_current_user_id(){
 	return is_logged_in();
 }
+
+// Sanitize title
+function sanitize_title( $str = '' ){
+	// Replace any non word to dash -
+	$str = preg_replace('/\W+/', '-', strtolower( trim( $str ) ) );
+	$str = trim( $str, 'php' );
+	$str = trim( $str, '-' );
+	return $str;
+}
+
+// Current page id
+function get_current_page_id(){
+	$request_uri = $_SERVER['REQUEST_URI'];
+	switch ( $request_uri ) {
+		case '/':
+			return 'index';
+			break;
+		
+		default:
+			return sanitize_title( $request_uri );
+			break;
+	}
+
+	// return empty
+	return;
+}
+
+// Body Class
+function get_body_classes(){
+	return get_current_page_id();
+}

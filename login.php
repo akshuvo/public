@@ -105,11 +105,11 @@ if( isset( $_SERVER["REQUEST_METHOD"] ) && $_SERVER["REQUEST_METHOD"] == "POST")
             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
             <hr class="my-4">
 
-            <a class="small text-muted" href="#!">Forgot password?</a>
+            <a class="small text-muted" href="password.php">Forgot password?</a>
             <p style="color: #393f81;">Don't have an account? <a href="signup.php" style="color: #393f81;">Register here</a></p>
         </form>
       </div>
     </div>
-  </div>
+</div>
 <?php include_once 'footer.php';?>
 
