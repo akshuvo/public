@@ -28,7 +28,7 @@ if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
     <title>Helping Wall</title>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/frontend.css">
 </head>
 <body class="<?php echo get_body_classes(); ?>">
 
