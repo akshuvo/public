@@ -50,3 +50,37 @@ function get_current_page_id(){
 function get_body_classes(){
 	return get_current_page_id();
 }
+
+// Home url
+function home_url( $url = '' ){
+	$home_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+	$home_url = trim( $home_url, '/' ) . '/';
+
+	if ( !empty( $url ) ) {
+		$home_url = $home_url . $url;
+	}
+
+	return $home_url;
+}
+
+// Avatar
+function get_avatar(){
+	return 'S';
+}
+
+// Get welcome message
+function get_welcome_message(){
+	return 'Hi Shuvo';
+}
+
+// Sanitize Texts
+function sanitize_text_field( $string, $remove_breaks = false ) {
+    $string = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $string );
+    $string = strip_tags( $string );
+ 
+    if ( $remove_breaks ) {
+        $string = preg_replace( '/[\r\n\t ]+/', ' ', $string );
+    }
+ 
+    return trim( $string );
+}

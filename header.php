@@ -14,7 +14,7 @@ if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
 	session_destroy();
 	 
 	// Redirect to login page
-	header("location: login.php");
+	header("location: " . home_url() );
 	exit;
 }
 
@@ -26,16 +26,16 @@ if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helping Wall</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/frontend.css">
+    <link rel="stylesheet" href="<?php echo home_url('assets/css/bootstrap.css'); ?>">
+    <link rel="stylesheet" href="<?php echo home_url('assets/font/bootstrap-icons.css'); ?>">
+    <link rel="stylesheet" href="<?php echo home_url('assets/css/frontend.css'); ?>">
 </head>
 <body class="<?php echo get_body_classes(); ?>">
 
 <!-- Start Header -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="javascript:void(0)">HW</a>
+        <a class="navbar-brand" href="<?php echo home_url(); ?>">HW</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
@@ -57,12 +57,14 @@ if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
             <?php if( is_logged_in() ) : ?>
 	            <div class="dropdown text-end">
 			        <a href="#" class="d-flex link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-			        	<span class="align-items-center bg-body d-flex h6 justify-content-center m-0 p-1 rounded-circle" style=" width: 30px; height: 30px; ">M</span>
+			        	<span class="align-items-center bg-body d-flex h6 justify-content-center m-0 p-1 rounded-circle" style=" width: 30px; height: 30px; "><?php echo get_avatar(); ?></span>
 			        </a>
 			        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
-			          	<li><a class="dropdown-item" href="#">New project...</a></li>
-			          	<li><a class="dropdown-item" href="#">Settings</a></li>
-			          	<li><a class="dropdown-item" href="#">Profile</a></li>
+			          	<li><h5 class="dropdown-header"><?php echo get_welcome_message(); ?></h5></li>
+			          	<li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+			          	<li><a class="dropdown-item" href="<?php echo home_url('dashboard/my-items.php'); ?>">My Items</a></li>
+			          	<li><a class="dropdown-item" href="<?php echo home_url('dashboard/add-new.php'); ?>">Add New Item</a></li>
+			          	<li><a class="dropdown-item" href="<?php echo home_url('dashboard/profile.php'); ?>">Profile</a></li>
 			          	<li><hr class="dropdown-divider"></li>
 			          	<li><a class="dropdown-item" href="?logout=true">Sign out</a></li>
 			        </ul>

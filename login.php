@@ -2,7 +2,7 @@
 <?php 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if( is_logged_in() ){
-    header("location: welcome.php");
+    header("location: " . home_url('dashboard'));
     exit;
 }
 
@@ -33,7 +33,7 @@ if( isset( $_SERVER["REQUEST_METHOD"] ) && $_SERVER["REQUEST_METHOD"] == "POST")
     // Validate credentials
     if( empty( $username_err ) && empty( $password_err ) ){
      
-        $query = $mysqli->query( "SELECT id, email, password FROM Users WHERE email = '$username'" );
+        $query = $dbconn->query( "SELECT id, email, password FROM Users WHERE email = '$username'" );
         $get_users = $query->fetch_assoc();
        
         if( $query->num_rows > 0 ){
@@ -54,7 +54,7 @@ if( isset( $_SERVER["REQUEST_METHOD"] ) && $_SERVER["REQUEST_METHOD"] == "POST")
                 $_SESSION["current_user_id"] = $get_users['id'];
                 
                 // Redirect user to welcome page
-                header("location: welcome.php");
+                header("location: " . home_url('dashboard'));
                      
             } else{
                 // Username doesn't exist, display a generic error message
@@ -71,7 +71,7 @@ if( isset( $_SERVER["REQUEST_METHOD"] ) && $_SERVER["REQUEST_METHOD"] == "POST")
     }
     
     // Close connection
-    $mysqli->close();
+    $dbconn->close();
 }
 ?>
 <div class="container col-xl-10 col-xxl-8 px-4 py-5">

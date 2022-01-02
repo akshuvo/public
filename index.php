@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="row align-items-md-stretch">
+    <!-- <div class="row align-items-md-stretch">
       <div class="col-md-6">
         <div class="h-100 p-5 text-white bg-dark rounded-3">
           <h2>Change the background</h2>
@@ -31,6 +31,6 @@
           <button class="btn btn-outline-secondary" type="button">Example button</button>
         </div>
       </div>
-    </div>
+    </div> -->
 </div>
 <?php include_once 'footer.php';?>

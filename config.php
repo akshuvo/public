@@ -21,9 +21,9 @@ define( 'DB_COLLATE', '' );
 
  
 /* Attempt to connect to MySQL database */
-$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+$dbconn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
  
 // Check connection
-if( $mysqli === false ){
-    die("ERROR: Could not connect. " . $mysqli->connect_error);
+if( $dbconn === false ){
+    die("ERROR: Could not connect. " . $dbconn->connect_error);
 }
