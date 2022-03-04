@@ -44,13 +44,13 @@ if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Link</a>
+                    <a class="nav-link" href="javascript:void(0)">Donation List</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Link</a>
+                    <a class="nav-link" href="javascript:void(0)">Request a Pickup</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Link</a>
+                    <a class="nav-link" href="javascript:void(0)">Contact Us</a>
                 </li>
             </ul>
 
