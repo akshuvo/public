@@ -14,7 +14,7 @@ if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
 	session_destroy();
 	 
 	// Redirect to login page
-	header("location: " . home_url() );
+	header("location: " . home_url('/') );
 	exit;
 }
 
@@ -61,9 +61,9 @@ if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
 			        </a>
 			        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
 			          	<li><h5 class="dropdown-header"><?php echo get_welcome_message(); ?></h5></li>
-			          	<li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+			          	<li><a class="dropdown-item" href="<?php echo home_url('dashboard/index.php'); ?>">Dashboard</a></li>
 			          	<li><a class="dropdown-item" href="<?php echo home_url('dashboard/my-items.php'); ?>">My Items</a></li>
-			          	<li><a class="dropdown-item" href="<?php echo home_url('dashboard/add-new.php'); ?>">Add New Item</a></li>
+			          	<li><a class="dropdown-item" href="<?php echo home_url('dashboard/new-donation.php'); ?>">Add New Item</a></li>
 			          	<li><a class="dropdown-item" href="<?php echo home_url('dashboard/profile.php'); ?>">Profile</a></li>
 			          	<li><hr class="dropdown-divider"></li>
 			          	<li><a class="dropdown-item" href="?logout=true">Sign out</a></li>
@@ -71,8 +71,8 @@ if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
 		        </div>
 		    <?php else : ?>
 		    	<div class="text-end">
-	                <a href="login.php" class="btn btn-outline-light me-2">Login</a>
-	                <a href="signup.php" class="btn btn-warning">Sign-up</a>
+	                <a href="<?php echo home_url('login.php'); ?>" class="btn btn-outline-light me-2">Login</a>
+	                <a href="<?php echo home_url('signup.php'); ?>" class="btn btn-warning">Sign-up</a>
 	            </div>
 		    <?php endif; ?>
 

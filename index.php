@@ -6,9 +6,9 @@
             <h1 class="display-5 fw-bold">Search Donations</h1>
             <p class="col-md-8 fs-4 mb-5">Here you can find donations by location</p>
 
-            <form class="align-items-center bg-body d-flex p-4 shadow" method="post">
+            <form class="align-items-center bg-body d-flex p-4 shadow" method="post" autocomplete="off">
                 <div class="input-group input-group-lg me-3">
-                    <input id="push-geo-location" type="text" class="form-control border-end-0" name="location" placeholder="Enter your full address">
+                    <input id="push-geo-location" type="text" class="form-control border-end-0" name="location" placeholder="Enter your full address" autocomplete="off">
                     <a id="get-current-location" class="bg-body input-group-text" title="Autofill your current location"><i class="bi bi-geo-alt"></i></a>
                 </div>
                 <button class="btn btn-lg btn-primary w-25" type="submit">Search</button>

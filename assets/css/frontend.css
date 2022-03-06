@@ -1,0 +1,11 @@
+.input-geo .spinner-grow{
+	display: none;
+}
+
+.input-geo.loading .spinner-grow{
+	display: block;
+}
+
+.input-geo.loading .bi{
+	display: none;
+}

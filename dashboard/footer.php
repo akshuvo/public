@@ -13,6 +13,18 @@
 
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
+
+<script src="../assets/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: '#advanced-contents',
+        height: 500,
+        menubar: false,
+    });
+    
+  </script>
+
 <script src="../assets/js/custom.js"></script>
+
 </body>
 </html>

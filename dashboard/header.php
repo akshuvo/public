@@ -32,12 +32,13 @@ if( !is_logged_in() ){
     <title>Helping Wall</title>
     <link rel="stylesheet" href="<?php echo home_url('assets/css/bootstrap.css'); ?>">
     <link rel="stylesheet" href="<?php echo home_url('assets/font/bootstrap-icons.css'); ?>">
+    <link rel="stylesheet" href="<?php echo home_url('assets/css/frontend.css'); ?>">
     <link rel="stylesheet" href="<?php echo home_url('assets/css/dashboard.css'); ?>">
 </head>
 <body class="<?php echo get_body_classes(); ?>">
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  	<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/dashboard">Helping Wall</a>
+  	<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="<?php echo home_url('dashboard/index.php'); ?>">Helping Wall</a>
   
 	<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -58,7 +59,7 @@ if( !is_logged_in() ){
 	    <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="dropdownUser1" style="">
 	    	<li><h5 class="dropdown-header"><?php echo get_welcome_message(); ?></h5></li>
 			<li><a class="dropdown-item" href="<?php echo home_url('dashboard/my-items.php'); ?>">My Items</a></li>
-			<li><a class="dropdown-item" href="<?php echo home_url('dashboard/add-new.php'); ?>">Add New Item</a></li>
+			<li><a class="dropdown-item" href="<?php echo home_url('dashboard/new-donation.php'); ?>">Add New Item</a></li>
 			<li><a class="dropdown-item" href="<?php echo home_url('dashboard/profile.php'); ?>">Profile</a></li>
 	      	<li><hr class="dropdown-divider"></li>
 	      	<li><a class="dropdown-item" href="?logout=true">Sign out</a></li>
