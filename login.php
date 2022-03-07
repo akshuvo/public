@@ -7,8 +7,9 @@ if( is_logged_in() ){
 }
 
 // Include config file
-require_once "config.php";
- 
+// require_once "config.php";
+//dbconn();
+
 // Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = $login_err = "";
@@ -33,7 +34,7 @@ if( isset( $_SERVER["REQUEST_METHOD"] ) && $_SERVER["REQUEST_METHOD"] == "POST")
     // Validate credentials
     if( empty( $username_err ) && empty( $password_err ) ){
      
-        $query = $dbconn->query( "SELECT id, email, password FROM Users WHERE email = '$username'" );
+        $query = dbconn()->query( "SELECT id, email, password FROM Users WHERE email = '$username'" );
         $get_users = $query->fetch_assoc();
        
         if( $query->num_rows > 0 ){

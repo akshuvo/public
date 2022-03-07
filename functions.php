@@ -1,4 +1,42 @@
 <?php
+/** Absolute path to the  directory. */
+if ( ! defined( 'ABSPATH' ) ) {
+	define( 'ABSPATH', dirname( __FILE__ ) . '/' );
+}
+
+// Include config file
+require ABSPATH . "config.php";
+
+
+// For development purpose
+if ( !function_exists('ppr') ) {
+  function ppr($data = null){
+    echo "<pre>";
+    print_r($data);
+    echo "</pre>";
+  }
+}
+
+// Get Settings
+function get_option( $option_key = false ){
+	if ( !$option_key ) {
+		return '';
+	}
+
+	// sql query 
+	$get_value = dbconn()->get_results( "SELECT value FROM Options WHERE name = '$option_key' LIMIT 1" );
+    
+    // If has data
+    
+    if ( !empty( $get_value ) ) {
+    	// get option value
+    	return isset( $get_value['value'] ) ? $get_value['value'] : '';
+    }
+
+	return '';
+}
+
+
 // Check if the user is logged in
 function is_logged_in(){
 
@@ -51,16 +89,49 @@ function get_body_classes(){
 	return get_current_page_id();
 }
 
+
 // Home url
 function home_url( $url = '' ){
-	$home_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+
+	// Get site url from DB
+	$home_url = get_option('siteurl');
+	//$home_url = '';
+
+	// Set from client side
+	if ( empty( $home_url ) ) {
+		$home_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+	}
+
+	// remove and add trailing slash
 	$home_url = trim( $home_url, '/' ) . '/';
 
+	// add extra params
 	if ( !empty( $url ) ) {
 		$home_url = $home_url . $url;
 	}
 
+	// remove and add trailing slash
+	if ( !strrpos( $home_url, ".php") ) {
+		$home_url = trim( $home_url, '/' ) . '/';
+	}
+
+
 	return $home_url;
+}
+
+
+// Assets url
+function assets_url( $url = '' ){
+
+	// remove and add trailing slash
+	$assets_url = home_url('assets');
+
+	// add extra params
+	if ( !empty( $url ) ) {
+		$assets_url = $assets_url . $url;
+	}
+	
+	return $assets_url;
 }
 
 // Avatar

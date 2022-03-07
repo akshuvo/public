@@ -30,10 +30,10 @@ if( !is_logged_in() ){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helping Wall</title>
-    <link rel="stylesheet" href="<?php echo home_url('assets/css/bootstrap.css'); ?>">
-    <link rel="stylesheet" href="<?php echo home_url('assets/font/bootstrap-icons.css'); ?>">
-    <link rel="stylesheet" href="<?php echo home_url('assets/css/frontend.css'); ?>">
-    <link rel="stylesheet" href="<?php echo home_url('assets/css/dashboard.css'); ?>">
+    <link rel="stylesheet" href="<?php echo assets_url('css/bootstrap.css'); ?>">
+    <link rel="stylesheet" href="<?php echo assets_url('font/bootstrap-icons.css'); ?>">
+    <link rel="stylesheet" href="<?php echo assets_url('css/frontend.css'); ?>">
+    <link rel="stylesheet" href="<?php echo assets_url('css/dashboard.css'); ?>">
 </head>
 <body class="<?php echo get_body_classes(); ?>">
 
@@ -73,6 +73,7 @@ if( !is_logged_in() ){
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
+
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">
               <span data-feather="home"></span>

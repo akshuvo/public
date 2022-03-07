@@ -1,4 +1,4 @@
-<?php require_once 'functions.php'; ?>
+<?php require_once dirname( __FILE__ ) . '/functions.php'; ?>
 <?php
 if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
 
@@ -26,9 +26,9 @@ if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helping Wall</title>
-    <link rel="stylesheet" href="<?php echo home_url('assets/css/bootstrap.css'); ?>">
-    <link rel="stylesheet" href="<?php echo home_url('assets/font/bootstrap-icons.css'); ?>">
-    <link rel="stylesheet" href="<?php echo home_url('assets/css/frontend.css'); ?>">
+    <link rel="stylesheet" href="<?php echo assets_url('css/bootstrap.css'); ?>">
+    <link rel="stylesheet" href="<?php echo assets_url('font/bootstrap-icons.css'); ?>">
+    <link rel="stylesheet" href="<?php echo assets_url('css/frontend.css'); ?>">
 </head>
 <body class="<?php echo get_body_classes(); ?>">
 

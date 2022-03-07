@@ -20,7 +20,7 @@ if ( $full_name && $email && $phone && $password ) {
 	VALUES ('$full_name', '$email', '$phone', '$hash_password', '$full_address', '$country', '$state')";
 
 	// Include config file
-	require_once "config.php";
+	//require_once "config.php";
 
 	if ( $dbconn->query( $sql ) === TRUE ) {
 	  	$last_id = $dbconn->insert_id;
