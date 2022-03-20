@@ -46,3 +46,44 @@
         /// Remove Spinner
         jQuery('.input-geo').removeClass('loading');
     }
+
+jQuery(document).ready(function($){
+        /* vendorForm submit */
+        $(document).on('submit', '.hw-ajax-form', function(e) {
+            e.preventDefault();
+            var $this = $(this);
+
+            var formData = new FormData(this);
+            //formData.append('action', 'get_vendors_tables');
+
+            $.ajax({
+                type: 'post',
+                url: ajaxurl,
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function(data) {
+
+
+                },
+                complete: function(data) {
+
+                },
+                success: function(data) {
+
+                    console.log(data);
+                    //var response = JSON.parse(data);
+
+
+                    //$this.find('.response').html( response.msg );
+
+                },
+                error: function(data) {
+                    console.log(data);
+
+                },
+
+            });
+
+        });
+});

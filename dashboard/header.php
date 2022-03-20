@@ -1,4 +1,4 @@
-<?php require_once '../functions.php'; ?>
+<?php require_once dirname( __DIR__ ) . '/functions.php'; ?>
 <?php
 if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
 
@@ -34,6 +34,10 @@ if( !is_logged_in() ){
     <link rel="stylesheet" href="<?php echo assets_url('font/bootstrap-icons.css'); ?>">
     <link rel="stylesheet" href="<?php echo assets_url('css/frontend.css'); ?>">
     <link rel="stylesheet" href="<?php echo assets_url('css/dashboard.css'); ?>">
+
+    <script>
+      let ajaxurl = '<?php echo home_url('admin-ajax.php'); ?>';
+    </script>
 </head>
 <body class="<?php echo get_body_classes(); ?>">
 

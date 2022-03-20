@@ -47,7 +47,9 @@ $signup_err = '';
 
 // }
 ?>
-<div class="container ">
+<form class="hw-ajax-form" method="post" enctype="multipart/form-data">
+<input type="hidden" name="action" value="donation-add">
+<div class="container">
 	<div class="pb-4 pt-4 row">
 		<div class="col-md-12">
       		<h1 class>Add New Donation</h1>
@@ -56,7 +58,7 @@ $signup_err = '';
 
     <div class="row">
 
-      	<div class="col-md-8  col-lg-8">
+      	<div class="col-md-8 col-lg-8">
 
 			<div class="card">
 			    <div class="card-header">
@@ -64,7 +66,6 @@ $signup_err = '';
 			    </div>
 			    <div class="card-body">
 			     
-
 			            <div class="form-floating mb-3">
 			                <input class="form-control" id="inputFullName" type="text" name="title" placeholder="Enter your full name" value="<?php echo $title; ?>" required>
 			                <label for="inputFullName">Title</label>
@@ -81,7 +82,7 @@ $signup_err = '';
 			            </div>
 
 			            <div class="form-floating mb-3">
-			                <input class="form-control" id="inputQty" type="number" name="qty" placeholder="2" value="<?php echo $phone; ?>" required>
+			                <input class="form-control" id="inputQty" type="number" min="1" name="qty" placeholder="2" value="<?php echo $phone; ?>" required>
 			                <label for="inputQty">Quantity</label>
 			            </div>
 
@@ -167,7 +168,7 @@ $signup_err = '';
 			    <div class="card-body">
 			   	
 			   		<div class="form-group files">
-	                	<input type="file" class="form-control" name="product-images" accept="image/*" multiple>
+	                	<input type="file" class="form-control product-images" name="product-images[]" accept="image/*" multiple>
 	              	</div>
 
 			      
@@ -199,6 +200,6 @@ $signup_err = '';
 
     </div>
 </div>
-
+</form>
 <?php include_once 'footer.php'; ?>
 

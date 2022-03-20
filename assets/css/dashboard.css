@@ -126,7 +126,7 @@ body {
     right: 0;
     height: 56px;
     content: "";
-    background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+    background-image: url(../img/upload.svg);
     display: block;
     margin: 0 auto;
     background-size: 100%;
