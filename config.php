@@ -31,6 +31,8 @@ define( 'DB_COLLATE', '' );
 final class dbconn{ 
 
     public $dbconn;
+    public $insert_id;
+    public $last_error;
 
     function __construct(){
         /* Attempt to connect to MySQL database */
@@ -57,8 +59,18 @@ final class dbconn{
         return $instance;
     }
     
-    public function query( $query ){
-        return $this->dbconn->query( $query);
+    public function query( $query, $type = '' ){
+
+        if ( empty( $type ) ) {
+            return $this->dbconn->query( $query );
+        } elseif( $type == 'insert' ){
+            if ( $this->dbconn->query( $query ) === TRUE ) {
+                $this->insert_id = $this->dbconn->insert_id;
+            } else {
+                $this->last_error = "Error: " . $query . "<br>" . $this->dbconn->error;
+            }
+        }
+        
     }
 
     public function get_results( $query = '' ){
@@ -73,6 +85,27 @@ final class dbconn{
         }
 
         return false;
+    }
+
+    // Insert query
+    public function insert( $table, $data ){
+        if ( empty( $table ) ) {
+            return false;
+        }
+
+        $this->insert_id = 0;
+     
+        $fields  = '`' . implode( '`, `', array_keys( $data ) ) . '`';
+        $values  = '"' . implode( '", "', array_values( $data ) ) . '"';
+        
+        // Build query
+        $sql = "INSERT INTO `$table` ($fields) VALUES ($values)";
+
+        // Run query
+        $db_query = $this->query( $sql, 'insert' );
+
+        // return insert id
+        return $this->insert_id;
     }
 }
 
