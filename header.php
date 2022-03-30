@@ -56,7 +56,7 @@ if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
 
             <?php if( is_logged_in() ) : ?>
 	            <div class="dropdown text-end">
-			        <a href="#" class="d-flex link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+			        <a  class="d-flex link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 			        	<span class="align-items-center bg-body d-flex h6 justify-content-center m-0 p-1 rounded-circle" style=" width: 30px; height: 30px; "><?php echo get_avatar(); ?></span>
 			        </a>
 			        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">

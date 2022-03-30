@@ -91,7 +91,7 @@ if( !is_logged_in() ){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="<?php echo home_url('dashboard/new-donation.php'); ?>">
               <span data-feather="shopping-cart"></span>
               Add New
             </a>

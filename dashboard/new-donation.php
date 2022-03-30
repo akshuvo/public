@@ -148,10 +148,9 @@ $signup_err = '';
 			        <h6 class="mt-2">Advance Contents</h6>
 			    </div>
 			    <div class="card-body">
-
 			          
 					<div>
-					   	<textarea id="advanced-contents"></textarea>
+					   	<textarea id="advanced-contents" name="advanced-contents"></textarea>
 					</div>
 
 			    </div>
