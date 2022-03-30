@@ -72,7 +72,7 @@ $signup_err = '';
 			            </div>
 
 			            <div class="form-floating mb-3">
-			                <select class="form-select" id="product-type" required>
+			                <select class="form-select" id="product-type" name="type" required>
 				                <option value="">Choose...</option>
 				                <option>Pant</option>
 				                <option>Shirt</option>
@@ -150,7 +150,7 @@ $signup_err = '';
 			    <div class="card-body">
 			          
 					<div>
-					   	<textarea id="advanced-contents" name="advanced-contents"></textarea>
+					   	<textarea id="advanced-contents" name="contents"></textarea>
 					</div>
 
 			    </div>

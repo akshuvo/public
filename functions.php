@@ -220,3 +220,73 @@ function get_allowed_file_types(){
 
     return $mimes;
 }
+
+function hw_parse_str( $string, &$array ) {
+    parse_str( (string) $string, $array );
+}
+
+// Parse Args
+function hw_parse_args( $args, $defaults = array() ) {
+    if ( is_object( $args ) ) {
+        $parsed_args = get_object_vars( $args );
+    } elseif ( is_array( $args ) ) {
+        $parsed_args =& $args;
+    } else {
+        hw_parse_str( $args, $parsed_args );
+    }
+ 
+    if ( is_array( $defaults ) && $defaults ) {
+        return array_merge( $defaults, $parsed_args );
+    }
+    return $parsed_args;
+}
+
+// Add Donation
+function add_donation( $args = [] ){
+
+	$defaults_args = array(
+		'id'        => '',
+		'title'     => '',
+		'type'      => '',
+		'qty'       => '',
+		'contents'  => '',
+		'status'    => '',
+		'is_active' => '0',
+		'location'  => '',
+		'country'   => '',
+		'state'     => '',
+		'latitude'  => '',
+		'longitude' => '',
+		'user_id'   => get_current_user_id(),
+	);
+
+	// Parse args
+	$args = hw_parse_args($args, $defaults_args);
+
+	// Insert Data
+	$insert_data = array(
+		'title'     => sanitize_text_field( $args['title'] ),
+		'type'      => sanitize_text_field( $args['type'] ),
+		'qty'       => sanitize_text_field( $args['qty'] ),
+		'contents'  => $args['contents'], // sanitize
+		'status'    => sanitize_text_field( $args['status'] ),
+		'is_active' => sanitize_text_field( $args['is_active'] ),
+		'location'  => sanitize_text_field( $args['location'] ),
+		'country'   => sanitize_text_field( $args['country'] ),
+		'state'     => sanitize_text_field( $args['state'] ),
+		'latitude'  => sanitize_text_field( $args['latitude'] ),
+		'longitude' => sanitize_text_field( $args['longitude'] ),
+		'user_id'   => sanitize_text_field( $args['user_id'] ),
+	);
+
+	// Insert
+	dbconn()->insert( 'Donations', $insert_data);
+
+	// Get Insert ID
+
+	// Upload Images
+
+	// Return Insert ID
+}
+
+

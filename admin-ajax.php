@@ -24,8 +24,11 @@ function hw_ajax_donation_add(){
 
 	$upload_files = $product_images;
 	$return_data = [];
+
+	// Add data
+	add_donation( $_POST );
 	
-	if ( isset( $upload_files['name'] ) && !empty( $upload_files['name'] ) ) {
+	if ( isset( $upload_files['name'] ) && !empty( $upload_files ) ) {
 		foreach ( $upload_files['name'] as $key => $filename ) {
 
 			// If file already exixts then give another name
