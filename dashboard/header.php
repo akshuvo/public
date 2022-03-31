@@ -35,6 +35,11 @@ if( !is_logged_in() ){
     <link rel="stylesheet" href="<?php echo assets_url('css/frontend.css'); ?>">
     <link rel="stylesheet" href="<?php echo assets_url('css/dashboard.css'); ?>">
 
+    <?php if( get_current_page_id() == 'dashboard-my-items' ) : ?>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <?php endif; ?>
+
     <script>
       let ajaxurl = '<?php echo home_url('admin-ajax.php'); ?>';
     </script>
