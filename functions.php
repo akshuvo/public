@@ -243,6 +243,13 @@ function hw_parse_args( $args, $defaults = array() ) {
 
 // Upload Media
 function handle_uploads( $upload_files = [] ){
+	
+	// Create Uploads Folder
+	if ( !file_exists( UPLOADS_DIR ) ) {
+	    mkdir( UPLOADS_DIR, 0777, true) ;
+	}
+
+	// Hold return data
 	$return_data = [];
 	
 	if ( isset( $upload_files['name'] ) && !empty( $upload_files ) ) {
@@ -328,11 +335,8 @@ function add_donation( $args = [] ){
 	// Insert
 	dbconn()->insert( 'Donations', $insert_data);
 
-	$insert_id = dbconn()->insert_id;
-
 	// Get Insert ID
-
-	// Upload Images
+	$insert_id = dbconn()->insert_id;
 
 	// Return Insert ID
 	return $insert_id;
