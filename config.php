@@ -100,7 +100,7 @@ final class dbconn{
         
         // Build query
         $sql = "INSERT INTO `$table` ($fields) VALUES ($values)";
-ppr($sql);
+
         // Run query
         $db_query = $this->query( $sql, 'insert' );
 
