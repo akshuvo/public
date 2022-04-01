@@ -67,7 +67,7 @@ if( !is_logged_in() ){
 	    </a>
 	    <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="dropdownUser1" style="">
 	    	<li><h5 class="dropdown-header"><?php echo get_welcome_message(); ?></h5></li>
-			<li><a class="dropdown-item" href="<?php echo home_url('dashboard/my-items.php'); ?>">My Items</a></li>
+			<li><a class="dropdown-item" href="<?php echo home_url('dashboard/my-items.php'); ?>">My Donations</a></li>
 			<li><a class="dropdown-item" href="<?php echo home_url('dashboard/new-donation.php'); ?>">Add New Item</a></li>
 			<li><a class="dropdown-item" href="<?php echo home_url('dashboard/profile.php'); ?>">Profile</a></li>
 	      	<li><hr class="dropdown-divider"></li>
@@ -90,9 +90,9 @@ if( !is_logged_in() ){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="<?php echo home_url('dashboard/my-items.php'); ?>">
               <span data-feather="file"></span>
-              My Donates
+              My Donations
             </a>
           </li>
           <li class="nav-item">

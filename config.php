@@ -73,7 +73,7 @@ final class dbconn{
         
     }
 
-    public function get_results( $query = '' ){
+    public function get_results( $query = ''  ){
         if ( empty( $query ) ) {
             return '';
         }
@@ -81,7 +81,33 @@ final class dbconn{
         $db_query = $this->query( $query );
 
         if( $db_query->num_rows > 0 ){
+     
+            // output data of each row
+            $rows = [];
+
+            while($row = $db_query->fetch_assoc()) {
+                $rows[] = $row;
+            }
+
+            return $rows;
+            
+        }
+
+        return false;
+    }
+
+    // Get only first row
+    public function get_row( $query = '' ){
+        if ( empty( $query ) ) {
+            return '';
+        }
+
+        $db_query = $this->query( $query );
+
+        if( $db_query->num_rows > 0 ){
+            
             return $db_query->fetch_assoc();
+            
         }
 
         return false;

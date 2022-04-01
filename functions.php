@@ -29,7 +29,7 @@ function get_option( $option_key = false ){
 	}
 
 	// sql query 
-	$get_value = dbconn()->get_results( "SELECT value FROM Options WHERE name = '$option_key' LIMIT 1" );
+	$get_value = dbconn()->get_row( "SELECT value FROM Options WHERE name = '$option_key' LIMIT 1" );
     
     // If has data
     
@@ -164,6 +164,11 @@ function sanitize_text_field( $string, $remove_breaks = false ) {
     return trim( $string );
 }
 
+// Sanitize HTML
+function esc_html( $string = '' ) {
+    return trim( htmlspecialchars( $string ) );
+}
+
 // Allowed Mimes
 function get_allowed_file_types(){
 	$mimes = array(
@@ -292,10 +297,9 @@ function handle_uploads( $upload_files = [] ){
 	return $return_data;
 }
 
-// Add Donation
-function add_donation( $args = [] ){
-
-	$defaults_args = array(
+// Donation Default args
+function get_donation_default_args(){
+	return array(
 		'id'        => '',
 		'title'     => '',
 		'type'      => '',
@@ -310,7 +314,14 @@ function add_donation( $args = [] ){
 		'longitude' => '',
 		'user_id'   => get_current_user_id(),
 		'images'   	=> '',
+		'dated'   	=> date('Y-m-d H:i:s'),
 	);
+}
+
+// Add Donation
+function add_donation( $args = [] ){
+
+	$defaults_args = get_donation_default_args();
 
 	// Parse args
 	$args = hw_parse_args($args, $defaults_args);
@@ -320,7 +331,7 @@ function add_donation( $args = [] ){
 		'title'     => sanitize_text_field( $args['title'] ),
 		'type'      => sanitize_text_field( $args['type'] ),
 		'qty'       => sanitize_text_field( $args['qty'] ),
-		'contents'  => $args['contents'], // sanitize
+		'contents'  => htmlspecialchars( $args['contents'], ENT_QUOTES ), // sanitize
 		'status'    => sanitize_text_field( $args['status'] ),
 		'is_active' => sanitize_text_field( $args['is_active'] ),
 		'location'  => sanitize_text_field( $args['location'] ),
@@ -330,6 +341,7 @@ function add_donation( $args = [] ){
 		'longitude' => sanitize_text_field( $args['longitude'] ),
 		'user_id'   => sanitize_text_field( $args['user_id'] ),
 		'images'   	=> sanitize_text_field( $args['images'] ),
+		'dated'   	=> sanitize_text_field( $args['dated'] ),
 	);
 
 	// Insert
