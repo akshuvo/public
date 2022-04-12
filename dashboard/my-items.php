@@ -59,8 +59,8 @@ $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_acti
 				                	Published<br><?php echo esc_html( date("d/m/Y h:ia", strtotime($args['dated'])) ); ?>
 				                </td>
 				                <td>
-				                	<a href="" class="btn btn-outline-secondary btn-sm">Edit</a>
-				                	<a href="" class="btn btn-outline-secondary btn-sm">Delete</a>
+				                	<a href="<?php echo home_url('dashboard/new-donation.php?id=' . $args['id']); ?>" class="btn btn-outline-secondary btn-sm">Edit</a>
+				                	<a href="<?php echo '?action=delete_donation&id=' . $args['id']; ?>" class="btn btn-outline-secondary btn-sm">Delete</a>
 				                </td>
 				              
 				            </tr>

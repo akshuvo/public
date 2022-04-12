@@ -153,3 +153,17 @@ body {
 span.tox-statusbar__branding a {
     display: none;
 }
+
+.hwd-image-wrap {
+    height: 90px;
+    overflow: hidden;
+    position: relative;
+}
+
+.remove-image {
+    right: 4px;
+    position: absolute;
+    background: #fff;
+    display: block;
+    cursor: pointer;
+}

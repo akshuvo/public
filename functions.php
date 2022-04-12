@@ -354,4 +354,17 @@ function add_donation( $args = [] ){
 	return $insert_id;
 }
 
+// Get images from comma separeted
+function hw_get_images( $ids = '' ){
+
+	if( empty( $ids ) ){
+		return false;
+	}
+
+	// Get Images
+	$get_images = dbconn()->get_results("SELECT * FROM Media WHERE id IN($ids)");
+
+	return $get_images;
+}
+
 
