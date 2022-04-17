@@ -2,7 +2,7 @@ function WP_GEO_Field_MapInit( fieldEl = false, fieldtype = 'wp_geo' ) {
 
     fieldEl = jQuery('.hw_geo_wrap');
 
-    var searchInput = jQuery('#push-geo-location' ).get(0);
+    var searchInput = jQuery('#push-geo-location').get(0);
     var mapCanvas   = jQuery('#map', fieldEl ).get(0);
 
     var putLocation = jQuery('#push-geo-location', fieldEl );
@@ -27,7 +27,7 @@ function WP_GEO_Field_MapInit( fieldEl = false, fieldtype = 'wp_geo' ) {
     };
 
     var mapOptions = {
-        center:    new google.maps.LatLng( 23.763567379093512,90.29701113313904 ),
+        center:    new google.maps.LatLng( 23.763567379093512,90.29701113313904 ), // Dhaka Location
         zoom:      6,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -88,7 +88,6 @@ function WP_GEO_Field_MapInit( fieldEl = false, fieldtype = 'wp_geo' ) {
             });
         }
 
-
     }
 
     // Get geo code position on pin drag
@@ -111,7 +110,7 @@ function WP_GEO_Field_MapInit( fieldEl = false, fieldtype = 'wp_geo' ) {
 
                 get_components( responses[0] );
 
-                // console.log( responses );
+                console.log( responses );
 
             } else {
                 console.log('Cannot determine address at this location due to: ' + status);
@@ -350,7 +349,7 @@ function WP_GEO_Field_MapInit( fieldEl = false, fieldtype = 'wp_geo' ) {
         try {
         	WP_GEO_Field_MapInit();
         } catch( err ) {
-
+            console.info('Loading Error', err.message);
         }
 
 	});

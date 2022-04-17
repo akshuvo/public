@@ -6,12 +6,22 @@
             <h1 class="display-5 fw-bold">Search Donations</h1>
             <p class="col-md-8 fs-4 mb-5">Here you can find donations by location</p>
 
-            <form class="align-items-center bg-body d-flex p-4 shadow" method="post" autocomplete="off">
+            <form class="hw_geo_wrap align-items-center bg-body d-flex p-4 shadow" method="post" autocomplete="off" action="map-search.php">
                 <div class="input-group input-group-lg me-3">
-                    <input id="push-geo-location" type="text" class="hw-geo-location form-control border-end-0" name="location" placeholder="Enter your full address" autocomplete="off">
-                    <a id="get-current-location" class="bg-body input-group-text" title="Autofill your current location"><i class="bi bi-geo-alt"></i></a>
+                    <input id="push-geo-location" type="text" class="hw-geo-location form-control border-end-0" name="location" placeholder="Enter your full address" autocomplete="off" required>
+                    <a id="get-current-location" class="input-geo cursor-pointer bg-body input-group-text" title="Autofill your current location">
+                        <i class="bi bi-geo-alt"></i>
+                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    </a>
                 </div>
                 <button class="btn btn-lg btn-primary w-25" type="submit">Search</button>
+
+                <div id="map" class="d-none"></div>
+
+                <input type="hidden" class="form-control" id="inputCountry" name="country" placeholder="Country">
+                <input type="hidden" class="form-control" id="inputState"  name="state" placeholder="State">
+                <input type="hidden" class="form-control" id="inputlatitude" name="latitude" placeholder="Latitude">
+                <input type="hidden" class="form-control" id="inputlongitude"  name="longitude" placeholder="Longitude">
             </form>
         </div>
     </div>
