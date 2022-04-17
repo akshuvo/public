@@ -5,7 +5,7 @@
 $user_id = get_current_user_id();
 
 // Get doncations
-$donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE user_id = $user_id ORDER BY id DESC ");
+$donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE 1=1 ORDER BY id DESC LIMIT 0,20");
 
 ?>
 <form class="hw-ajax-form" method="post" enctype="multipart/form-data">
@@ -14,7 +14,7 @@ $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_acti
 	<div class="pb-4 pt-4 row">
 		<div class="col-md-12">
       		<div class="align-items-center d-flex justify-content-between">
-      			<h1 class>My Donations</h1>
+      			<h1 class>Donation List</h1>
       			<a href="<?php echo home_url('dashboard/new-donation.php'); ?>" class="btn btn-secondary btn-block">Add New</a>
       		</div>
       	</div>

@@ -9,3 +9,9 @@
 .input-geo.loading .bi{
 	display: none;
 }
+
+.whs-nowrap{
+	white-space: nowrap;
+}
+
+div#map {height: 300px;}

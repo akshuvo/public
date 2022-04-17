@@ -133,6 +133,27 @@ final class dbconn{
         // return insert id
         return $this->insert_id;
     }
+
+    // Update query
+    public function update( $table, $data, $where ){
+        if ( empty( $table ) || empty( $where ) ) {
+            return false;
+        }
+
+        $this->insert_id = 0;
+     
+        $fields  = '`' . implode( '`, `', array_keys( $data ) ) . '`';
+        $values  = '"' . implode( '", "', array_values( $data ) ) . '"';
+        
+        // Build query
+        $sql = "UPDATE `$table` ($fields) VALUES ($values)";
+
+        // Run query
+        $db_query = $this->query( $sql, 'insert' );
+
+        // return insert id
+        return $this->insert_id;
+    }
 }
 
 function dbconn(){

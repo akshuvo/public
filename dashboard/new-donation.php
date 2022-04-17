@@ -21,6 +21,11 @@ $get_images = hw_get_images( $args['images'] );
 ?>
 <form class="hw-ajax-form" method="post" enctype="multipart/form-data">
 <input type="hidden" name="action" value="donation-add">
+
+<?php if( $id ): ?>
+	<input type="hidden" name="id" value="<?php echo $args['id']; ?>">
+<?php endif;  ?>
+
 <div class="container">
 	<div class="pb-4 pt-4 row">
 		<div class="col-md-12">
@@ -67,8 +72,8 @@ $get_images = hw_get_images( $args['images'] );
 			    <div class="card-header">
 			        <h6 class="mt-2">Location</h6>
 			    </div>
-			    <div class="card-body">
-
+			    <div class="hw_geo_wrap card-body">
+			    	<div id="map" class="mb-3"></div>
 			          
 						<div class="input-group me-3">
 		                    <input id="push-geo-location" type="text" class="form-control py-3 border-end-0" name="location" placeholder="Enter your full address" autocomplete="off" value="<?php echo $args['location']; ?>">
@@ -167,8 +172,9 @@ $get_images = hw_get_images( $args['images'] );
 			   	
 			   		<div class="form-floating mb-3">
 			            <select class="form-select" id="product-status" name="status" data-value="<?php echo $args['status']; ?>" required>
-				            <option value="2">Submit for review</option>
-				            <option value="0">Draft</option>
+			            	<?php foreach( hw_donation_statuses() as $sid => $sval ): ?>
+					            <option value="<?php echo esc_html( $sid ); ?>"><?php echo esc_html( $sval ); ?></option>
+					        <?php endforeach; ?>
 				        </select>
 			            <label for="product-status">Status</label>
 			        </div>

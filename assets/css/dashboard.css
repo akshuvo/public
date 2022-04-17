@@ -158,6 +158,9 @@ span.tox-statusbar__branding a {
     height: 90px;
     overflow: hidden;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .remove-image {
@@ -166,4 +169,9 @@ span.tox-statusbar__branding a {
     background: #fff;
     display: block;
     cursor: pointer;
+    top: 0;
 }
+
+.sidebar .nav-link {margin: 0 10px;transition: 0s;border-radius: 7px;}
+
+.sidebar .nav-link:hover {background: #5b43ea;color: #fff;}

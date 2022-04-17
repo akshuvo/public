@@ -8,7 +8,7 @@
 
             <form class="align-items-center bg-body d-flex p-4 shadow" method="post" autocomplete="off">
                 <div class="input-group input-group-lg me-3">
-                    <input id="push-geo-location" type="text" class="form-control border-end-0" name="location" placeholder="Enter your full address" autocomplete="off">
+                    <input id="push-geo-location" type="text" class="hw-geo-location form-control border-end-0" name="location" placeholder="Enter your full address" autocomplete="off">
                     <a id="get-current-location" class="bg-body input-group-text" title="Autofill your current location"><i class="bi bi-geo-alt"></i></a>
                 </div>
                 <button class="btn btn-lg btn-primary w-25" type="submit">Search</button>
@@ -16,21 +16,44 @@
         </div>
     </div>
 
-    <!-- <div class="row align-items-md-stretch">
-      <div class="col-md-6">
-        <div class="h-100 p-5 text-white bg-dark rounded-3">
-          <h2>Change the background</h2>
-          <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
-          <button class="btn btn-outline-light" type="button">Example button</button>
+</div>
+
+<div class="container">
+
+    <div class="row align-items-md-stretch">
+
+        <div class="col-md-12">
+            <div class="align-items-center d-flex justify-content-between ">
+                <h1 class="m-0">Most recent donations</h1>
+                <button class="btn btn-secondary">View All</button>
+            </div>
+            <hr>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="h-100 p-5 bg-light border rounded-3">
-          <h2>Add borders</h2>
-          <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-          <button class="btn btn-outline-secondary" type="button">Example button</button>
-        </div>
-      </div>
-    </div> -->
+
+        
+        <?php
+        // Get doncations
+        $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE 1=1 ORDER BY id DESC LIMIT 50");
+
+        if( !empty( $donations ) ) : ?>
+
+            <?php foreach(  $donations as $row ) : 
+
+                // Donation default args
+                $defaults_args = get_donation_default_args();
+
+                // Parse args
+                $args = hw_parse_args($row, $defaults_args); 
+
+                get_template_part('donation-content.php', $args);
+                ?>
+                
+            <?php endforeach; ?>
+        <?php endif; ?>
+
+        
+
+    </div>
+
 </div>
 <?php include_once 'footer.php';?>

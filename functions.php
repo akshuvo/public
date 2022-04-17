@@ -226,6 +226,21 @@ function get_allowed_file_types(){
     return $mimes;
 }
 
+// Get template part
+function get_template_part( $template_name = false, $args = array() ){
+	$located = '';
+
+    if ( ! $template_name ) {
+        return;
+    }
+
+   	if ( file_exists( ABSPATH . 'dashboard/template-parts/' . $template_name ) ) {
+        $located = ABSPATH . 'dashboard/template-parts/' . $template_name;
+    }
+    
+    return include $located;
+}
+
 function hw_parse_str( $string, &$array ) {
     parse_str( (string) $string, $array );
 }
@@ -257,7 +272,7 @@ function handle_uploads( $upload_files = [] ){
 	// Hold return data
 	$return_data = [];
 	
-	if ( isset( $upload_files['name'] ) && !empty( $upload_files ) ) {
+	if ( isset( $upload_files['name'][0] ) && !empty( $upload_files['name'][0] ) ) {
 		foreach ( $upload_files['name'] as $key => $filename ) {
 
 			// If file already exixts then give another name
@@ -344,12 +359,21 @@ function add_donation( $args = [] ){
 		'dated'   	=> sanitize_text_field( $args['dated'] ),
 	);
 
-	// Insert
-	dbconn()->insert( 'Donations', $insert_data);
+	if( isset( $args['id'] ) && !empty( $args['id'] ) ) {
+		// Insert
+		dbconn()->update( 'Donations', $insert_data, ['id' => $args['id']]);
 
-	// Get Insert ID
-	$insert_id = dbconn()->insert_id;
+		// Get Insert ID
+		$insert_id = $args['id'];
+	} else {
+		// Insert
+		dbconn()->insert( 'Donations', $insert_data);
 
+		// Get Insert ID
+		$insert_id = dbconn()->insert_id;
+	}
+
+	
 	// Return Insert ID
 	return $insert_id;
 }
@@ -367,4 +391,11 @@ function hw_get_images( $ids = '' ){
 	return $get_images;
 }
 
-
+// Donation Status name
+function hw_donation_statuses(){
+	return [
+		'2' => 'Submit for review',
+		'1' => 'Active',
+		'0' => 'Draft',
+	];
+}

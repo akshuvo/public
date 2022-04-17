@@ -36,8 +36,8 @@ if( !is_logged_in() ){
     <link rel="stylesheet" href="<?php echo assets_url('css/dashboard.css'); ?>">
 
     <?php if( get_current_page_id() == 'dashboard-my-items' ) : ?>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"> -->
+        <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css"> -->
     <?php endif; ?>
 
     <script>
@@ -85,25 +85,31 @@ if( !is_logged_in() ){
 
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">
-              <span data-feather="home"></span>
+              <i class="bi bi-speedometer2"></i>
               Dashboard
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="<?php echo home_url('dashboard/all-items.php'); ?>">
+              <i class="bi bi-cash"></i>
+              All Donations
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="<?php echo home_url('dashboard/my-items.php'); ?>">
-              <span data-feather="file"></span>
+              <i class="bi bi-cash-coin"></i>
               My Donations
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo home_url('dashboard/new-donation.php'); ?>">
-              <span data-feather="shopping-cart"></span>
+              <i class="bi bi-folder-plus"></i>
               Add New
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <span data-feather="users"></span>
+              <i class="bi bi-person-plus"></i>
               Donation Requests
             </a>
           </li>
