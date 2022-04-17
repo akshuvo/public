@@ -78,7 +78,7 @@ $get_images = hw_get_images( $args['images'] );
 						<div class="input-group me-3">
 		                    <input id="push-geo-location" type="text" class="form-control py-3 border-end-0" name="location" placeholder="Enter your full address" autocomplete="off" value="<?php echo $args['location']; ?>">
 
-		                    <a data-bs-toggle="tooltip" data-bs-placement="top" id="get-current-location" class="input-geo cursor-pointer bg-body input-group-text" title="Autofill your current location" onclick="showPosition(this);">
+		                    <a data-bs-toggle="tooltip" data-bs-placement="top" id="get-current-location" class="input-geo cursor-pointer bg-body input-group-text" title="Autofill your current location">
 		                    	<i class="bi bi-geo-alt"></i>
 		                    	<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
 		                    </a>
@@ -181,7 +181,11 @@ $get_images = hw_get_images( $args['images'] );
 			      
 			    </div>
 			    <div class="card-footer text-center py-3">
-			        <div class="d-grid"><button class="btn btn-primary btn-block" type="submit">Submit</button></div>
+			        <div class="d-grid">
+			        	<button class="btn btn-primary btn-block submit-btn" type="submit">
+			        		<span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span> Submit
+				        </button>
+				    </div>
 			    </div>
 			   
 			</div>

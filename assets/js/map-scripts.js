@@ -13,7 +13,7 @@ function WP_GEO_Field_MapInit( fieldEl = false, fieldtype = 'wp_geo' ) {
     var city        = jQuery('input[name="city"]', fieldEl );
     var street      = jQuery('input[name="street"]', fieldEl );
     var postal_code      = jQuery('input[name="postal_code"]', fieldEl );
-    var locateme      = jQuery('.caafw_locateme', fieldEl );
+    var locateme      = jQuery('#get-current-location' );
 
     var location_data = {};
 
@@ -27,14 +27,14 @@ function WP_GEO_Field_MapInit( fieldEl = false, fieldtype = 'wp_geo' ) {
     };
 
     var mapOptions = {
-        center:    new google.maps.LatLng( 0,0 ),
-        zoom:      3,
+        center:    new google.maps.LatLng( 23.763567379093512,90.29701113313904 ),
+        zoom:      6,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    if( typeof adifier_data !== 'undefined' ){
-        mapOptions.styles = adifier_data.map_style ? JSON.parse( adifier_data.map_style ) : '';
-    }
+    // if( typeof adifier_data !== 'undefined' ){
+    //     mapOptions.styles = adifier_data.map_style ? JSON.parse( adifier_data.map_style ) : '';
+    // }
 
     var map	= new google.maps.Map( mapCanvas, mapOptions );
     geocoder = new google.maps.Geocoder();
@@ -111,7 +111,7 @@ function WP_GEO_Field_MapInit( fieldEl = false, fieldtype = 'wp_geo' ) {
 
                 get_components( responses[0] );
 
-                //console.log( responses );
+                // console.log( responses );
 
             } else {
                 console.log('Cannot determine address at this location due to: ' + status);
@@ -185,15 +185,43 @@ function WP_GEO_Field_MapInit( fieldEl = false, fieldtype = 'wp_geo' ) {
         	  		center: geolocation,
         	  		radius: position.coords.accuracy
         	  	});
+
         	  	autocomplete.setBounds(circle.getBounds());
 
                 setPosition( geolocation, 17, 'ARR' );
-        	});
-      	}
+
+                // Remove Spinner
+                jQuery(locateme).removeClass('loading');
+
+        	}, errorCallback);
+            
+      	} else {
+            alert("Sorry, your browser does not support geolocation.");
+        }
+    }
+
+    // Define callback function for failed attempt
+    function errorCallback(error) {
+        // Store the element where the page displays the result
+        var result = document.getElementById("geo-result");
+        
+        if( error.code == 1 ) {
+            result.innerHTML = "You've decided not to share your position, but it's OK. We won't ask you again.";
+        } else if( error.code == 2 ) {
+            result.innerHTML = "The network is down or the positioning service can't be reached.";
+        } else if( error.code == 3 ) {
+            result.innerHTML = "The attempt timed out before it could get the location data.";
+        } else {
+            result.innerHTML = "Geolocation failed due to unknown error.";
+        }
+
+        // Remove Spinner
+        jQuery(locateme).removeClass('loading');
     }
 
     // Get current location trigger
     jQuery( locateme ).on( 'click', function( e ){
+        jQuery(locateme).addClass('loading');
         geolocate();
     });
 
@@ -318,13 +346,11 @@ function WP_GEO_Field_MapInit( fieldEl = false, fieldtype = 'wp_geo' ) {
 	});
 
 	jQuery(window).on('load',function(){
-        var wp_geo_field = jQuery('#wp_geo_wrap');
 
         try {
         	WP_GEO_Field_MapInit();
         } catch( err ) {
 
         }
-
 
 	});
