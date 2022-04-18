@@ -22,3 +22,7 @@
 div#map {height: 300px;}
 
 [disabled] span.spinner-border {display: inline-block !important;}
+
+.min-vh-lg-100 {height: 100vh;}
+
+.hw-map-results-wrap .col-md-6 {width: 100%;}

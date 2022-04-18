@@ -29,6 +29,10 @@ if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
     <link rel="stylesheet" href="<?php echo assets_url('css/bootstrap.css'); ?>">
     <link rel="stylesheet" href="<?php echo assets_url('font/bootstrap-icons.css'); ?>">
     <link rel="stylesheet" href="<?php echo assets_url('css/frontend.css'); ?>">
+
+    <script>
+      let ajaxurl = '<?php echo home_url('admin-ajax.php'); ?>';
+    </script>
 </head>
 <body class="<?php echo get_body_classes(); ?>">
 

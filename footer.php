@@ -16,6 +16,7 @@
 <script src="<?php echo assets_url('js/bootstrap.min.js'); ?>"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhI86z06sBSA_7xDujhDPi9_AxqEdwL0c&libraries=places"></script>
+<!-- <script src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
 <script src="<?php echo assets_url('js/map-scripts.js'); ?>"></script>
 
 <script src="<?php echo assets_url('js/custom.js'); ?>"></script>
