@@ -21,10 +21,11 @@
 
 		                <div id="map" class="d-none"></div>
 
-		                <input type="hidden" class="form-control" id="inputCountry" name="country" placeholder="Country">
-		                <input type="hidden" class="form-control" id="inputState"  name="state" placeholder="State">
-		                <input type="hidden" class="form-control" id="inputlatitude" name="latitude" placeholder="Latitude">
-		                <input type="hidden" class="form-control" id="inputlongitude"  name="longitude" placeholder="Longitude">
+		                <input type="hidden" name="country" placeholder="Country">
+		                <input type="hidden" name="state" placeholder="State">
+		                <input type="hidden" name="latitude" placeholder="Latitude">
+		                <input type="hidden" name="longitude" placeholder="Longitude">
+		                <input type="hidden" name="action" value="browse_map">
 		            </div>
 	            </form>
 
