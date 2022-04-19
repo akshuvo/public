@@ -11,7 +11,7 @@
 	   			<form class="hw-ajax-form hw_geo_wrap ">
 		   			<div class="hw-ajax-form hw_geo_wrap align-items-center bg-body d-flex p-4 shadow" method="post" autocomplete="off">
 		                <div class="input-group input-group-lg me-3">
-		                    <input id="push-geo-location" type="text" class="hw-geo-location form-control border-end-0" name="location" placeholder="Enter your full address" autocomplete="off" required>
+		                    <input id="push-geo-location" type="text" class="hw-geo-location form-control border-end-0" name="location" placeholder="Enter your full address" autocomplete="off" >
 		                    <a id="get-current-location" class="input-geo cursor-pointer bg-body input-group-text" title="Autofill your current location">
 		                        <i class="bi bi-geo-alt"></i>
 		                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
@@ -74,37 +74,87 @@
 
 <script>
 
-var locations = [
-      ['<h1>Bondi Beach</h1>', -33.890542, 151.274856, 4],
-      ['Coogee Beach', -33.923036, 151.259052, 5],
-      ['Cronulla Beach', -34.028249, 151.157507, 3],
-      ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-      ['Maroubra Beach', -33.950198, 151.259302, 1]
-    ];
+	var locations = [];
 
     var map = new google.maps.Map(document.getElementById('map-canvas'), {
-      zoom: 10,
-      center: new google.maps.LatLng(-33.92, 151.25),
+      center:    new google.maps.LatLng( 23.763567379093512,90.29701113313904 ), // Dhaka Location
+      zoom:      7,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
     var infowindow = new google.maps.InfoWindow();
 
     var marker, i;
+    let markers = [];
 
-    for (i = 0; i < locations.length; i++) {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
-      });
+    // Center Position
+    jQuery(document).on('wp_geo_get_location_data', function(e, data){
 
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
-    }
+    	latLng = new google.maps.LatLng( data.lat, data.lng );
+
+        map.setCenter( latLng );
+        //map.setZoom( zoom );
+        map.panTo(latLng);
+    });
+
+    // Ajax success
+    jQuery(document).on('hw_ajax_success_browse_map', function(e, response){
+
+    	let data = JSON.parse( response );
+
+    	// Set locations
+    	if ( data.locations ) {
+    		locations = data.locations;
+    	}
+
+    	clearMarkers();
+    
+	    for (i = 0; i < locations.length; i++) {  
+
+	    	let timeout = i*100;
+
+	    	let lat = locations[i].lat;
+	    	let lng = locations[i].lng;
+	    	let info = locations[i].info;
+
+	    	// add animation
+	    	setTimeout(function(){
+			    marker = new google.maps.Marker({
+			       position: new google.maps.LatLng(lat, lng),
+			       map: map,
+			       animation: google.maps.Animation.DROP,
+			     //   icon: '<?php //echo assets_url('img/markers.png'); ?>',
+			     //   label: {
+				    //   text: "\uF3E7",
+				    //   fontFamily: "bootstrap-icons",
+				    //   color: "#ffffff",
+				    //   fontSize: "12px",
+				    // },
+			    });
+
+			    markers.push(marker);
+
+			    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+			        return function() {
+			          infowindow.setContent(info);
+			          infowindow.open(map, marker);
+			        }
+			    })(marker, i));
+
+			}, timeout);
+	    }
+
+    });
+
+	function clearMarkers() {
+	  for (let i = 0; i < markers.length; i++) {
+	    markers[i].setMap(null);
+	  }
+
+	  markers = [];
+	}
+
+    
 jQuery(document).ready(function($){
    
 });

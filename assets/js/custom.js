@@ -6,8 +6,8 @@ jQuery(document).ready(function($){
         
         jQuery('.submit-btn').prop('disabled', true);
 
-            var formData = new FormData(this);
-            //formData.append('action', 'get_vendors_tables');
+        var formData = new FormData(this);
+        let action = formData.get('action');
 
             $.ajax({
                 type: 'post',
@@ -24,6 +24,11 @@ jQuery(document).ready(function($){
                 },
                 success: function(data) {
 
+                    // Ajax success
+                    jQuery( document ).trigger( 'hw_ajax_success_'+action, [data] );
+
+
+                    console.log('hw_ajax_success_'+action);
                     console.log(data);
                     //var response = JSON.parse(data);
 

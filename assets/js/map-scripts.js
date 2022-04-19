@@ -51,7 +51,7 @@ function WP_GEO_Field_MapInit( fieldEl = false, fieldtype = 'wp_geo' ) {
     // Set Position on map
     function setPosition( latLng, zoom, type = null ) {
 
-		jQuery( document ).trigger( 'checkout_address_map_set_position' );
+		jQuery( document ).trigger( 'map_set_position' );
 
         marker.setPosition( latLng );
         map.setCenter( latLng );
@@ -80,13 +80,16 @@ function WP_GEO_Field_MapInit( fieldEl = false, fieldtype = 'wp_geo' ) {
 
         if( !location_data.country ) {
             jQuery(document).find('.caafw_locateme').trigger('click');
-        } else {
-            // after location trigger
-            jQuery( document ).trigger({
-                type: 'wp_geo_get_location_data',
-                locations: JSON.stringify(location_data),
-            });
-        }
+        } 
+
+        // // after location trigger
+        // jQuery( document ).trigger({
+        //     type: 'wp_geo_get_location_data',
+        //     locations: JSON.stringify(location_data),
+        // });
+        // after location trigger
+        jQuery( document ).trigger('wp_geo_get_location_data', [location_data]);
+        
 
     }
 
