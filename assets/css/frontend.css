@@ -26,3 +26,36 @@ div#map {height: 300px;}
 .min-vh-lg-100 {height: 100vh;}
 
 .hw-map-results-wrap .col-md-6 {width: 100%;}
+
+.page-title {
+    background-color: #2a2f36;
+    background-image: url(https://demo.spoonthemes.net/themes/adifier/wp-content/uploads/2018/02/bg-2-2.png);
+}
+
+.cf-advert-list .flex-wrap {
+    align-items: flex-start;
+}
+
+.cf-advert-list li {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+    width: calc(50% - 15px);
+    margin-right: 15px;
+    float: left;
+display: flex;justify-content: space-between;}
+
+.cf-advert-list .cf-label {
+    color: #aaa;
+}
+
+.cf-advert-list .cf-value {
+    font-weight: 600;
+    color: #4b586b;
+    text-align: right;
+    margin-left: 15px;
+}
+
+.cf-advert-list {overflow: hidden;margin: 0;}
+
+.donation-images-section .carousel-inner img {max-height: 450px;object-fit: contain;}
