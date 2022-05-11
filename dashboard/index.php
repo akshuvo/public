@@ -230,6 +230,17 @@
             </div>
         </div>
 
+        <div class="col-md-7">
+            <div class="card mb-5">
+                <div class="card-header">
+                    <h6 class="mt-2">Requests by dates</h6>
+                </div>
+                <div class="card-body">
+                    <img src="https://heplingwall.local/uploads/stats.png" class="d-block h-100 w-100">
+                </div>
+            </div>
+        </div>
+
     </div>  
 </div>
 <?php include_once 'footer.php';?>

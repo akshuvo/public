@@ -53,8 +53,8 @@ if( !is_logged_in() ){
 	    <span class="navbar-toggler-icon"></span>
 	</button>
 
-  	<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-
+  	<!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+<div class="w-100"></div>
 	<div class="navbar-nav">
 	    <div class="nav-item text-nowrap">
 	      <a class="nav-link px-3" href="<?php echo home_url(); ?>"><i class="bi bi-link"></i> Visit site</a>
