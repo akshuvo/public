@@ -29,7 +29,11 @@ $get_images = hw_get_images( $args['images'] );
 <div class="container">
 	<div class="pb-4 pt-4 row">
 		<div class="col-md-12">
-      		<h1 class>Add New Donation</h1>
+			<?php if ( $id ) : ?>
+      			<h1 class>Edit Donation</h1>
+      		<?php else: ?>
+      			<h1 class>Add New Donation</h1>
+      		<?php endif; ?>
       	</div>
 	</div>
 

@@ -84,7 +84,7 @@ if( !is_logged_in() ){
         <ul class="nav flex-column">
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
+            <a class="nav-link active" aria-current="page" href="<?php echo home_url('dashboard/index.php'); ?>">
               <i class="bi bi-speedometer2"></i>
               Dashboard
             </a>
