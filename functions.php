@@ -425,6 +425,89 @@ function get_user_db_default_args(){
 	);
 }
 
+
+// Add User
+function add_update_user( $args = [] ){
+
+	$defaults_args = get_user_db_default_args();
+
+	// Parse args
+	$args = hw_parse_args($args, $defaults_args);
+
+	// Insert Data
+	$insert_data = array(
+		'id'           => sanitize_text_field( $args['id'] ),
+		'full_name'    => sanitize_text_field( $args['full_name'] ),
+		'email'        => sanitize_text_field( $args['email'] ),
+		'password'     => sanitize_text_field( $args['password'] ),
+		'phone'        => sanitize_text_field( $args['phone'] ),
+		'full_address' => sanitize_text_field( $args['full_address'] ),
+		'country'      => sanitize_text_field( $args['country'] ),
+		'state'        => sanitize_text_field( $args['state'] ),
+		'lat'          => sanitize_text_field( $args['lat'] ),
+		'long'         => sanitize_text_field( $args['long'] ),
+		'user_role'    => sanitize_text_field( $args['user_role'] ),
+		'dated'        => sanitize_text_field( $args['dated'] ),
+	);
+
+	if( isset( $args['id'] ) && !empty( $args['id'] ) ) {
+		// Insert
+		dbconn()->update( 'Users', $insert_data, ['id' => $args['id']]);
+
+		// Get Insert ID
+		$insert_id = $args['id'];
+	} else {
+
+		// Unset ID
+		unset( $insert_data['id'] );
+
+		// Insert
+		dbconn()->insert( 'Users', $insert_data);
+
+		// Get Insert ID
+		$insert_id = dbconn()->insert_id;
+	}
+
+	
+	// Return Insert ID
+	return $insert_id;
+}
+
+// Get user by ID
+function get_user_by( $by = 'id', $value = '' ){
+
+	if ( empty( $value ) ) {
+		return '';
+	}
+
+	if ( $by == 'id' ) {
+		$user = dbconn()->get_row("SELECT * FROM Users WHERE id = '$value'");
+	} elseif( $by == 'email' ){
+		$user = dbconn()->get_row("SELECT * FROM Users WHERE email = '$value'");
+	} elseif( $by == 'phone' ){
+		$user = dbconn()->get_row("SELECT * FROM Users WHERE phone = '$value'");
+	}
+	
+	return $user;
+}
+
+// Get current user
+function current_user(){
+	if ( isset( $GLOBALS['current_user'] ) && !empty( $GLOBALS['current_user'] ) ) {
+		return $GLOBALS['current_user'];
+	}
+
+	$user_id = get_current_user_id();
+	$user = dbconn()->get_row("SELECT * FROM Users WHERE id = '$user_id'");
+	if ( !empty( $user ) ) {
+		$GLOBALS['current_user'] = $user;
+
+		return $user;
+	}
+
+	return false;
+}
+
 // Donation Request Default args
 function get_donation_req_db_default_args(){
 	return array(
@@ -439,7 +522,7 @@ function get_donation_req_db_default_args(){
 	);
 }
 
-// Add Donation
+// Add Donation Request
 function add_update_donation_request( $args = [] ){
 
 	$defaults_args = get_donation_req_db_default_args();

@@ -20,7 +20,11 @@ if ( $id ) {
 $args = hw_parse_args($donation_args, $defaults_args);
 
 $get_images = hw_get_images( $args['images'] );
-ppr($args);
+
+// Current User Data
+$current_user = current_user();
+$current_user = hw_parse_args($current_user, get_user_db_default_args());
+
 ?>
 <div class="page-title py-4 quick-search text-light mb-5">
     <div class="container">
@@ -194,15 +198,15 @@ ppr($args);
 			     		<input type="hidden" name="donation_id" value="<?php echo $id; ?>">
 
 			     		<div class="form-floating mb-3">
-			                <input class="form-control" id="inputFullName" type="text" name="full_name" placeholder="Enter your full name" required>
+			                <input class="form-control" id="inputFullName" type="text" name="full_name" placeholder="Enter your full name" value="<?php echo esc_html( $current_user['full_name'] ); ?>" required>
 			                <label for="inputFullName">Your Name</label>
 			            </div>
 			            <div class="form-floating mb-3">
-			                <input class="form-control" id="inputFullName" type="email" name="email" placeholder="Enter your full name" required>
+			                <input class="form-control" id="inputFullName" type="email" name="email" placeholder="Enter your full name" value="<?php echo esc_html( $current_user['email'] ); ?>" required>
 			                <label for="inputFullName">Email Address</label>
 			            </div>
 			            <div class="form-floating mb-3">
-			                <input class="form-control" id="inputFullName" type="tel" name="phone" placeholder="Enter your full name" required>
+			                <input class="form-control" id="inputFullName" type="tel" name="phone" placeholder="Enter your full name" value="<?php echo esc_html( $current_user['phone'] ); ?>" required>
 			                <label for="inputFullName">Phone</label>
 			            </div>
 			            <div class="form-floating mb-3">
