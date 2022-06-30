@@ -91,5 +91,28 @@ function hw_ajax_browse_map(){
 
 	die();
 }
+
+/**
+ * Handle Donation Request Add
+ */
+function hw_ajax_donation_request_add(){
+
+	// Get Form data
+	$name   = isset( $_POST['name'] ) ? sanitize_text_field( $_POST['name'] ) : '';
+	$email     = isset( $_POST['email'] ) ? sanitize_text_field( $_POST['email'] ) : '';
+	$phone  = isset( $_POST['phone'] ) ? sanitize_text_field( $_POST['phone'] ) : '';
+	$user_id = get_current_user_id() ? get_current_user_id() : '0';
+
+	$_POST['user_id'] = $user_id;
+
+	$request_id = add_update_donation_request( $_POST );
+
+ppr($request_id);
+
+    // Send reponse
+    echo $request_id;
+
+	die();
+}
 // Die
 die("0");

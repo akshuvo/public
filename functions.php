@@ -185,6 +185,15 @@ function esc_html( $string = '' ) {
     return trim( htmlspecialchars( $string ) );
 }
 
+// Date with formattings
+function hw_date( $date = '' ){
+	if ( !empty( $date ) ) {
+		return date("M d, Y h:ia", strtotime( $date ) );
+	}
+	
+	return '';
+}
+
 // Allowed Mimes
 function get_allowed_file_types(){
 	$mimes = array(
@@ -382,6 +391,9 @@ function add_donation( $args = [] ){
 		// Get Insert ID
 		$insert_id = $args['id'];
 	} else {
+
+		unset( $insert_data['id'] );
+
 		// Insert
 		dbconn()->insert( 'Donations', $insert_data);
 
@@ -413,33 +425,43 @@ function get_user_db_default_args(){
 	);
 }
 
-// Add Donation
-function add_update_user( $args = [] ){
+// Donation Request Default args
+function get_donation_req_db_default_args(){
+	return array(
+		'id'          => '',
+		'full_name'   => '',
+		'email'       => '',
+		'phone'       => '',
+		'donation_id' => '',
+		'user_id'     => '0',
+		'comment'     => '',
+		'date'        => date('Y-m-d H:i:s'),
+	);
+}
 
-	$defaults_args = get_user_db_default_args();
+// Add Donation
+function add_update_donation_request( $args = [] ){
+
+	$defaults_args = get_donation_req_db_default_args();
 
 	// Parse args
 	$args = hw_parse_args($args, $defaults_args);
 
 	// Insert Data
 	$insert_data = array(
-		'id'           => sanitize_text_field( $args['id'] ),
-		'full_name'    => sanitize_text_field( $args['full_name'] ),
-		'email'        => sanitize_text_field( $args['email'] ),
-		'password'     => sanitize_text_field( $args['password'] ),
-		'phone'        => sanitize_text_field( $args['phone'] ),
-		'full_address' => sanitize_text_field( $args['full_address'] ),
-		'country'      => sanitize_text_field( $args['country'] ),
-		'state'        => sanitize_text_field( $args['state'] ),
-		'lat'          => sanitize_text_field( $args['lat'] ),
-		'long'         => sanitize_text_field( $args['long'] ),
-		'user_role'    => sanitize_text_field( $args['user_role'] ),
-		'dated'        => sanitize_text_field( $args['dated'] ),
+		'id'          => sanitize_text_field( $args['id'] ),
+		'full_name'   => sanitize_text_field( $args['full_name'] ),
+		'email'       => sanitize_text_field( $args['email'] ),
+		'phone'       => sanitize_text_field( $args['phone'] ),
+		'donation_id' => sanitize_text_field( $args['donation_id'] ),
+		'user_id'     => sanitize_text_field( $args['user_id'] ),
+		'comment'     => sanitize_text_field( $args['comment'] ),
+		'date'        => sanitize_text_field( $args['date'] ),
 	);
 
 	if( isset( $args['id'] ) && !empty( $args['id'] ) ) {
 		// Insert
-		dbconn()->update( 'Users', $insert_data, ['id' => $args['id']]);
+		dbconn()->update( 'DonationRequests', $insert_data, ['id' => $args['id']]);
 
 		// Get Insert ID
 		$insert_id = $args['id'];
@@ -449,7 +471,7 @@ function add_update_user( $args = [] ){
 		unset( $insert_data['id'] );
 
 		// Insert
-		dbconn()->insert( 'Users', $insert_data);
+		dbconn()->insert( 'DonationRequests', $insert_data);
 
 		// Get Insert ID
 		$insert_id = dbconn()->insert_id;

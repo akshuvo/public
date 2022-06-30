@@ -20,7 +20,7 @@ if ( $id ) {
 $args = hw_parse_args($donation_args, $defaults_args);
 
 $get_images = hw_get_images( $args['images'] );
-
+ppr($args);
 ?>
 <div class="page-title py-4 quick-search text-light mb-5">
     <div class="container">
@@ -69,21 +69,8 @@ $get_images = hw_get_images( $args['images'] );
       		<div class="card mb-5">
       			<div class="card-body">
 			     	<h5 class="mb-3">More Details</h5>
-			        <ul class="list-unstyled cf-advert-list list-inline">
-					    <li class="flex-wrap"> <span class="cf-label"> Make			</span> <span class="cf-value"> Scania			</span> </li>
-					    <li class="flex-wrap"> <span class="cf-label"> Model			</span> <span class="cf-value"> R450			</span> </li>
-					    <li class="flex-wrap"> <span class="cf-label"> Mileage 			</span> <span class="cf-value"> 456km			</span> </li>
-					    <li class="flex-wrap"> <span class="cf-label"> Production Year			</span> <span class="cf-value"> 2018			</span> </li>
-					    <li class="flex-wrap"> <span class="cf-label"> Body Color			</span> <span class="cf-value"> Red</span> </li>
-					    <li class="flex-wrap"> <span class="cf-label"> Used			</span> <span class="cf-value"> No			</span> </li>
-					    <li class="flex-wrap"> <span class="cf-label"> Extras			</span> <span class="cf-value"> Airbags, ASP</span> </li>
-					</ul>
-			    </div>
-			</div>
-			<!-- End More Info -->
-
-      		<div class="card mb-5">
-      			<div class="card-body">
+			       
+      		
 			     	<h5 class="mb-3">Scania R-SRS L-CLASS R450 LA Streamline Highline Diesel</h5>
 					<div class="post-content clearfix">
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -102,47 +89,52 @@ $get_images = hw_get_images( $args['images'] );
 	            <hr>
 	        </div>
 
-      		<div class="card mb-4">
-      			<div class="card-body">
-				    <div class="d-flex row">
-				        <div class="col-md-12">
-				            <div class="d-flex flex-column comment-section">
-				                <div class="bg-white p-2">
-				                    <div class="d-flex flex-row user-info">
-				                    	<img class="rounded-circle" src="https://www.w3schools.com/bootstrap5/img_avatar3.png" width="40" height="40">
-				                        <div class="d-flex flex-column justify-content-start ms-2"><span class="d-block font-weight-bold name">Marry Andrews</span><span class="date text-black-50">Shared publicly - Jan 2020</span></div>
-				                    </div>
-				                    <div class="mt-2">
-				                        <p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-				                    </div>
-				                </div>
-				               
-				            </div>
-				        </div>
-				    </div>
-			    </div>
-			</div>
-			
-      		<div class="card mb-4">
-      			<div class="card-body">
-				    <div class="d-flex row">
-				        <div class="col-md-12">
-				            <div class="d-flex flex-column comment-section">
-				                <div class="bg-white p-2">
-				                    <div class="d-flex flex-row user-info">
-				                    	<img class="rounded-circle" src="https://www.w3schools.com/bootstrap5/img_avatar3.png" width="40" height="40">
-				                        <div class="d-flex flex-column justify-content-start ms-2"><span class="d-block font-weight-bold name">Marry Andrews</span><span class="date text-black-50">Shared publicly - Jan 2020</span></div>
-				                    </div>
-				                    <div class="mt-2">
-				                        <p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-				                    </div>
-				                </div>
-				               
-				            </div>
-				        </div>
-				    </div>
-			    </div>
-			</div>
+			<?php
+			// Get doncations
+		    $donations = dbconn()->get_results("SELECT * FROM DonationRequests WHERE 1=1 AND donation_id = $id ORDER BY id ASC LIMIT 50");
+
+		    // Response
+		    $response = [];
+		    $locations = [];
+
+		    if( !empty( $donations ) ) {
+		    	foreach(  $donations as $row ) {
+					// Donation default args
+		            $defaults_args = get_donation_req_db_default_args();
+
+		            // Parse args
+		            $req_args = hw_parse_args($row, $defaults_args); 
+
+		            ?>
+					<div class="card mb-4" id="donation-request-id-<?php echo $req_args['id']; ?>">
+		      			<div class="card-body">
+						    <div class="d-flex row">
+						        <div class="col-md-12">
+						            <div class="d-flex flex-column comment-section">
+						                <div class="bg-white p-2">
+						                    <div class="d-flex flex-row user-info">
+						                    	<img class="rounded-circle" src="https://www.w3schools.com/bootstrap5/img_avatar3.png" width="40" height="40">
+						                        <div class="d-flex flex-column justify-content-start ms-2">
+						                        	<span class="d-block font-weight-bold name"><?php echo $req_args['full_name']; ?></span>
+						                        	<small class="date text-black-50">Shared publicly - <?php echo hw_date( $req_args['date'] ); ?></small>
+						                        </div>
+						                    </div>
+						                    <div class="mt-2">
+						                        <p class="comment-text"><?php echo $req_args['comment']; ?></p>
+						                    </div>
+						                </div>
+						               
+						            </div>
+						        </div>
+						    </div>
+					    </div>
+					</div>
+		            <?
+		        }
+		    }
+			?>
+      		
+	
 			<!-- End More Info -->
 
       	</div>
@@ -156,21 +148,36 @@ $get_images = hw_get_images( $args['images'] );
 
 			<!-- Contact Information -->
 			<div class="card mb-5">
+				<div class="card-header"><strong>Location Info</strong></div>
       			<div class="card-body">
-			     	<h5 class="mb-3">Location Info</h5>
-
 			     	<ul class="list-unstyled cf-advert-list list-inline">
+			     		<li class="flex-wrap w-100"> 
+					    	<span class="cf-label">Title</span> 
+					    	<span class="cf-value"><?php echo esc_html($args['title']); ?></span> 
+					    </li>
+					    <li class="flex-wrap w-100"> 
+					    	<span class="cf-label">Type</span> 
+					    	<span class="cf-value"><?php echo esc_html($args['type']); ?></span> 
+					    </li>
+					    <li class="flex-wrap w-100"> 
+					    	<span class="cf-label">Quantity</span> 
+					    	<span class="cf-value"><?php echo esc_html($args['qty']); ?></span> 
+					    </li>
+					    <li class="flex-wrap w-100"> 
+					    	<span class="cf-label">Posted By</span> 
+					    	<span class="cf-value"><?php echo esc_html($args['user_id']); ?></span> 
+					    </li>
 					    <li class="flex-wrap w-100"> 
 					    	<span class="cf-label">Address</span> 
-					    	<span class="cf-value">Banasree road, house 06</span> 
+					    	<span class="cf-value"><?php echo esc_html($args['location']); ?></span> 
 					    </li>
 					    <li class="flex-wrap w-100"> 
 					    	<span class="cf-label">District</span> 
-					    	<span class="cf-value">Dhaka</span> 
+					    	<span class="cf-value"><?php echo esc_html($args['country']); ?></span> 
 					    </li>
 					    <li class="flex-wrap w-100"> 
 					    	<span class="cf-label">Country</span> 
-					    	<span class="cf-value">Bangladesh</span> 
+					    	<span class="cf-value"><?php echo esc_html($args['state']); ?></span> 
 					    </li>
 					</ul>
 					
@@ -179,12 +186,15 @@ $get_images = hw_get_images( $args['images'] );
 
 			<!-- Send Request Form -->
 			<div class="card mb-5">
+				<div class="card-header"><strong>Send Request to this</strong></div>
       			<div class="card-body">
-			     	<h5 class="mb-3">Send Request to this</h5>
 
-			     	<form class="request-form">
+			     	<form class="hw-ajax-form request-form" method="post">
+			     		<input type="hidden" name="action" value="donation_request_add">
+			     		<input type="hidden" name="donation_id" value="<?php echo $id; ?>">
+
 			     		<div class="form-floating mb-3">
-			                <input class="form-control" id="inputFullName" type="text" name="name" placeholder="Enter your full name" required>
+			                <input class="form-control" id="inputFullName" type="text" name="full_name" placeholder="Enter your full name" required>
 			                <label for="inputFullName">Your Name</label>
 			            </div>
 			            <div class="form-floating mb-3">
@@ -214,8 +224,8 @@ $get_images = hw_get_images( $args['images'] );
 
 
 			<div class="card mb-5">
+				<div class="card-header"><strong>More from this location</strong></div>
       			<div class="card-body">
-			     	<h5 class="mb-3">More from this location</h5>
 					<div class="similar-donations">
 						
 						<!-- Start Single Donation Small Grid -->

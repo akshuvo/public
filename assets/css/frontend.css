@@ -33,6 +33,8 @@ div#map {height: 300px;}
 
 .cf-advert-list .flex-wrap {
     align-items: flex-start;
+    border-bottom: 1px solid #f6f6f6;
+    padding-bottom: 8px;
 }
 
 .cf-advert-list li {

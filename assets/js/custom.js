@@ -1,8 +1,9 @@
 jQuery(document).ready(function($){
-    /* Donation submit */
+    
+    // Ajax form submit handle
     $(document).on('submit', '.hw-ajax-form', function(e) {
-            e.preventDefault();
-            var $this = $(this);
+        e.preventDefault();
+        var $this = $(this);
         
         jQuery('.submit-btn').prop('disabled', true);
 
@@ -15,10 +16,7 @@ jQuery(document).ready(function($){
                 data: formData,
                 processData: false,
                 contentType: false,
-                beforeSend: function(data) {
-                    
-
-                },
+                beforeSend: function(data) {},
                 complete: function(data) {
                     jQuery('.submit-btn').prop('disabled', false);
                 },
@@ -37,13 +35,18 @@ jQuery(document).ready(function($){
 
                 },
                 error: function(data) {
-
                     jQuery('.submit-btn').prop('disabled', false);
                     console.log(data);
-
                 },
 
             });
 
+    });
+
+    // Donation request handle
+    jQuery(document).on('hw_ajax_success_donation_request_add', function(e, data){
+        if ( data != "" ) {
+            window.location.reload()
+        }
     });
 });

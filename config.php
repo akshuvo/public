@@ -104,7 +104,7 @@ final class dbconn{
 
         $db_query = $this->query( $query );
 
-        if( $db_query->num_rows > 0 ){
+        if( isset( $db_query->num_rows ) && $db_query->num_rows > 0 ){
             
             return $db_query->fetch_assoc();
             
