@@ -37,7 +37,7 @@ $get_images = hw_get_images( $args['images'] );
 	<div class="row">
       	<div class="col-md-8 col-lg-8">
       		<div class="donation-images-section mb-5">
-				<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+				<div id="carouselExampleIndicators" class="carousel slide single-donation-carousel card" data-bs-ride="carousel">
 				    
 				    <div class="carousel-inner">
 				        <div class="carousel-item active">
@@ -94,6 +94,14 @@ $get_images = hw_get_images( $args['images'] );
 			</div>
 			<!-- End More Info -->
 
+			<div class="col-md-12">
+	            <div class="align-items-center d-flex justify-content-between ">
+	                <h1 class="m-0">Who requested on this</h1>
+	                <button class="btn btn-secondary">Request Now</button>
+	            </div>
+	            <hr>
+	        </div>
+
       		<div class="card mb-4">
       			<div class="card-body">
 				    <div class="d-flex row">
@@ -142,7 +150,7 @@ $get_images = hw_get_images( $args['images'] );
       	<div class="col-md-4 col-lg-4">
 
       		<!-- Availability -->
-			<div class="bg-info py-3  text-center text-light mb-5">
+			<div class="bg-success py-3  text-center text-light mb-5">
 				<h4 class="m-0">Available</h4>
 			</div>
 

@@ -14,7 +14,7 @@ $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_acti
 	<div class="pb-4 pt-4 row">
 		<div class="col-md-12">
       		<div class="align-items-center d-flex justify-content-between">
-      			<h1 class>Donation List</h1>
+      			<h1 class>All Donations</h1>
       			<a href="<?php echo home_url('dashboard/new-donation.php'); ?>" class="btn btn-secondary btn-block">Add New</a>
       		</div>
       	</div>

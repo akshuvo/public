@@ -72,7 +72,7 @@ if( isset( $_SERVER["REQUEST_METHOD"] ) && $_SERVER["REQUEST_METHOD"] == "POST")
     }
     
     // Close connection
-    $dbconn->close();
+    // dbconn()->close();
 }
 ?>
 <div class="container col-xl-10 col-xxl-8 px-4 py-5">
@@ -84,6 +84,13 @@ if( isset( $_SERVER["REQUEST_METHOD"] ) && $_SERVER["REQUEST_METHOD"] == "POST")
             <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 <strong>Error:</strong> <?php echo $login_err; ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if( isset( $_GET['message'] ) && $_GET['message'] == 'signup-success' ) : ?>
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Signup Completed! Please login.</strong>
             </div>
         <?php endif; ?>
 

@@ -22,6 +22,22 @@ if ( !function_exists('ppr') ) {
   }
 }
 
+// Email function
+function hw_mail( $to, $subject, $message, $headers = ''){
+
+	$headers .= "From: Helping Wall <mailserver@".$_SERVER['SERVER_NAME'].">\r\n";
+	// $headers .= "Reply-To: Shuvo <ss@example.com> \r\n";
+
+	// $headers .= "CC: susan@example.com\r\n";
+	$headers .= "MIME-Version: 1.0\r\n";
+	$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+	// send email
+	mail($to, $subject, $message, $headers);
+}
+
+// hw_mail('s@gmail.com', 'test', 'Shuvo<br>hi');
+
 // Get Settings
 function get_option( $option_key = false ){
 	if ( !$option_key ) {
@@ -378,6 +394,72 @@ function add_donation( $args = [] ){
 	return $insert_id;
 }
 
+
+// User Default args
+function get_user_db_default_args(){
+	return array(
+		'id'           => '',
+		'full_name'    => '',
+		'email'        => '',
+		'password'     => '',
+		'phone'        => '',
+		'full_address' => '',
+		'country'      => '',
+		'state'        => '',
+		'lat'          => '0',
+		'long'         => '0',
+		'user_role'    => 'user',
+		'dated'        => date('Y-m-d H:i:s'),
+	);
+}
+
+// Add Donation
+function add_update_user( $args = [] ){
+
+	$defaults_args = get_user_db_default_args();
+
+	// Parse args
+	$args = hw_parse_args($args, $defaults_args);
+
+	// Insert Data
+	$insert_data = array(
+		'id'           => sanitize_text_field( $args['id'] ),
+		'full_name'    => sanitize_text_field( $args['full_name'] ),
+		'email'        => sanitize_text_field( $args['email'] ),
+		'password'     => sanitize_text_field( $args['password'] ),
+		'phone'        => sanitize_text_field( $args['phone'] ),
+		'full_address' => sanitize_text_field( $args['full_address'] ),
+		'country'      => sanitize_text_field( $args['country'] ),
+		'state'        => sanitize_text_field( $args['state'] ),
+		'lat'          => sanitize_text_field( $args['lat'] ),
+		'long'         => sanitize_text_field( $args['long'] ),
+		'user_role'    => sanitize_text_field( $args['user_role'] ),
+		'dated'        => sanitize_text_field( $args['dated'] ),
+	);
+
+	if( isset( $args['id'] ) && !empty( $args['id'] ) ) {
+		// Insert
+		dbconn()->update( 'Users', $insert_data, ['id' => $args['id']]);
+
+		// Get Insert ID
+		$insert_id = $args['id'];
+	} else {
+
+		// Unset ID
+		unset( $insert_data['id'] );
+
+		// Insert
+		dbconn()->insert( 'Users', $insert_data);
+
+		// Get Insert ID
+		$insert_id = dbconn()->insert_id;
+	}
+
+	
+	// Return Insert ID
+	return $insert_id;
+}
+
 // Get images from comma separeted
 function hw_get_images( $ids = '' ){
 
@@ -399,3 +481,4 @@ function hw_donation_statuses(){
 		'0' => 'Draft',
 	];
 }
+

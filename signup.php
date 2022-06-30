@@ -9,45 +9,67 @@ $country = isset( $_POST['country'] ) ? sanitize_text_field( $_POST['country'] )
 $state = isset( $_POST['state'] ) ? sanitize_text_field( $_POST['state'] ) : '';
 
 $signup_err = '';
+$date = date("Y-m-d H:i:s");
 
 // Validate inputs
 if ( $full_name && $email && $phone && $password ) {
 
 	$hash_password = md5( $password );
 
-	// Insert query
-	$sql = "INSERT INTO Users (full_name, email, phone, password, full_address, country, state) 
-	VALUES ('$full_name', '$email', '$phone', '$hash_password', '$full_address', '$country', '$state')";
+	// Set Hash Password
+	$_POST['password'] = $hash_password;
 
-	// Include config file
-	//require_once "config.php";
+	$user_id = add_update_user($_POST);
 
-	if ( $dbconn->query( $sql ) === TRUE ) {
-	  	$last_id = $dbconn->insert_id;
-
-	  	if ( $last_id ) {
-	  		// Initialize the session
-	        if ( session_status() === PHP_SESSION_NONE ) {
-	            session_start();
-	        }
-
-	        // Store data in session variables
-	        $_SESSION["loggedin"] = true;
-	        $_SESSION["current_user_id"] = $last_id;
-	                
-	        // Redirect user to welcome page
-	        header("location: " . home_url('dashboard?message=signup-done'));
-	  	}
-	  	
+	if( !$user_id ) {
+		$signup_err = 'Something went wrong.';
 	} else {
-	  	$signup_err = 'Something went wrong.';
+		header("location: " . home_url('login.php?message=signup-success'));
+    	exit;
+		
 	}
+
+	// // Insert query
+	// $sql = "INSERT INTO Users (full_name, email, phone, password, full_address, country, state, lat, long, user_role, dated) 
+	// VALUES ('$full_name', '$email', '$phone', '$hash_password', '$full_address', '$country', '$state', '', '', 'user', '$date')";
+
+	// // Include config file
+	// //require_once "config.php";
+
+	// if ( dbconn()->query( $sql ) === TRUE ) {
+	//   	$last_id = dbconn()->insert_id;
+
+	//   	if ( $last_id ) {
+	//   		// Initialize the session
+	//         if ( session_status() === PHP_SESSION_NONE ) {
+	//             session_start();
+	//         }
+
+	//         // Store data in session variables
+	//         $_SESSION["loggedin"] = true;
+	//         $_SESSION["current_user_id"] = $last_id;
+	                
+	//         // Redirect user to welcome page
+	//         header("location: " . home_url('dashboard?message=signup-done'));
+	//   	}
+	  	
+	// } else {
+	//   	$signup_err = 'Something went wrong.';
+	// }
 
 }
 ?>
 <div class="container col-xl-10 col-xxl-8 px-4 py-5">
     <div class="row align-items-center g-lg-5 py-5">
       	<div class="col-md-10 mx-auto col-lg-8">
+
+      		<?php if( !empty( $signup_err ) ) : ?>
+	      		<div class="alert alert-warning alert-dismissible">
+	      			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+				  	<strong>Error:</strong> Something went wrong, please check the informations again.
+				</div>
+			<?php endif; ?>
+
 			<div class="card shadow-lg border-0 rounded-lg">
 			    <div class="card-header">
 			        <h3 class="text-center font-weight-light my-4">Create Account</h3>

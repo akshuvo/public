@@ -2,6 +2,12 @@
 <?php
 // Initial error message
 $error_msg = '';
+$success_msg = '';
+
+$email = isset( $_POST['email'] ) ? sanitize_text_field( $_POST['email'] ) : '';
+if ( !empty( $email ) ) {
+    // code...
+}
 ?>
 <div class="container col-xl-10 col-xxl-8 px-4 py-5">
     <div class="row align-items-center g-lg-5 py-5">
@@ -25,7 +31,7 @@ $error_msg = '';
                     <div class="small mb-3 text-muted">Enter your email address and we will send you a link to reset your password.</div>
                     <form method="post">
                         <div class="form-floating mb-3">
-                            <input name="email" class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
+                            <input name="email" class="form-control" id="inputEmail" type="email" placeholder="name@example.com" value="<?php echo $email; ?>" />
                             <label for="inputEmail">Email address</label>
                         </div>
                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
