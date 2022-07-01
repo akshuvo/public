@@ -80,3 +80,18 @@ display: flex;justify-content: space-between;}
 .card-title {
     color: #5d6165 !important;
 }
+
+
+.hw-status {
+    font-size: 0.80em;
+    white-space: nowrap;
+}
+
+.action-btns {
+    right: 7px !important;
+    display: none;
+}
+
+.card:hover .action-btns {
+    display: block;
+}

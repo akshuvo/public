@@ -158,14 +158,19 @@ function assets_url( $url = '' ){
 	return $assets_url;
 }
 
-// Avatar
-function get_avatar(){
-	return 'S';
-}
-
 // Get welcome message
 function get_welcome_message(){
-	return 'Hi Shuvo';
+	$user = current_user();
+	if ( isset( $user['full_name'] ) ) {
+		return $user['full_name'];
+	}
+	
+	return 'Guest';
+}
+
+// Avatar
+function get_avatar(){
+	return substr(get_welcome_message(), 0, 1);
 }
 
 // Sanitize Texts
@@ -581,9 +586,32 @@ function hw_get_images( $ids = '' ){
 // Donation Status name
 function hw_donation_statuses(){
 	return [
-		'2' => 'Submit for review',
+		'2' => 'Under review',
 		'1' => 'Active',
 		'0' => 'Draft',
 	];
 }
 
+// Get donation title by id
+function get_title( $id ){
+	if ( empty( $id ) ) {
+		return '';
+	}
+
+	$title = dbconn()->get_row("SELECT title FROM Donations WHERE id = $id");
+
+	if ( !empty( $title ) ) {
+		return $title['title'];
+	}
+	
+	return '';
+}
+
+// Donation delete
+if ( isset( $_GET['action'] ) && $_GET['action'] == 'donation-delete' ) {
+	$id = isset( $_GET['id'] ) ? sanitize_text_field( $_GET['id'] ) : '';
+	if ( $id ) {
+		dbconn()->query("DELETE FROM Donations WHERE id = $id");
+	}
+
+}

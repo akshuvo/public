@@ -49,4 +49,12 @@ jQuery(document).ready(function($){
             window.location.reload()
         }
     });
+
+    // Delete Confirm
+    jQuery(document).on('click', '.delete-confirm', function(e){
+        if ( !confirm('Are you sure?') ) {
+            e.preventDefault();
+            return;
+        }
+    });
 });

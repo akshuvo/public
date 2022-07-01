@@ -18,7 +18,6 @@ if ( isset( $_GET['logout'] ) && $_GET['logout'] == 'true' ) {
 	exit;
 }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
