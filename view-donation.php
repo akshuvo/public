@@ -88,21 +88,21 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 			<div class="col-md-12">
 	            <div class="align-items-center d-flex justify-content-between ">
 	                <h1 class="m-0">Who requested on this</h1>
-	                <button class="btn btn-secondary">Request Now</button>
+	                <a href="#donation-request-form" class="btn btn-secondary">Request Now</a>
 	            </div>
 	            <hr>
 	        </div>
 
 			<?php
 			// Get doncations
-		    $donations = dbconn()->get_results("SELECT * FROM DonationRequests WHERE 1=1 AND donation_id = $id ORDER BY id ASC LIMIT 50");
+		    $donation_req = dbconn()->get_results("SELECT * FROM DonationRequests WHERE 1=1 AND donation_id = $id ORDER BY id ASC LIMIT 50");
 
 		    // Response
 		    $response = [];
 		    $locations = [];
 
-		    if( !empty( $donations ) ) {
-		    	foreach(  $donations as $row ) {
+		    if( !empty( $donation_req ) ) {
+		    	foreach(  $donation_req as $row ) {
 					// Donation default args
 		            $defaults_args = get_donation_req_db_default_args();
 
@@ -117,7 +117,7 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 						            <div class="d-flex flex-column comment-section">
 						                <div class="bg-white p-2">
 						                    <div class="d-flex flex-row user-info">
-						                    	<img class="rounded-circle" src="https://www.w3schools.com/bootstrap5/img_avatar3.png" width="40" height="40">
+						                    	<img class="rounded-circle" src="<?php echo home_url() . 'assets/img/img_avatar3.png';?>" width="40" height="40">
 						                        <div class="d-flex flex-column justify-content-start ms-2">
 						                        	<span class="d-block font-weight-bold name"><?php echo $req_args['full_name']; ?></span>
 						                        	<small class="date text-black-50">Shared publicly - <?php echo hw_date( $req_args['date'] ); ?></small>
@@ -135,8 +135,14 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 					</div>
 		            <?
 		        }
-		    }
-			?>
+		    } else { ?>
+				<div class="container-fluid py-5 text-center">
+                    <h1 class="display-5 fw-bold  text-primary">No requests yet!</h1>
+                    <p class="fs-4 text-secondary">Request now and join the contributions.</p>
+                    <a href="#donation-request-form" class="btn btn-outline-secondary">Request Now</a>
+
+                 </div>
+		    <?php } ?>
       		
 	
 			<!-- End More Info -->
@@ -189,7 +195,7 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 			</div>
 
 			<!-- Send Request Form -->
-			<div class="card mb-5">
+			<div class="card mb-5" id="donation-request-form">
 				<div class="card-header"><strong>Send Request to this</strong></div>
       			<div class="card-body">
 

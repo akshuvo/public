@@ -60,3 +60,23 @@ display: flex;justify-content: space-between;}
 .cf-advert-list {overflow: hidden;margin: 0;}
 
 .donation-images-section .carousel-inner img {max-height: 450px;object-fit: contain;}
+
+.main-hero{
+    background-image: url('../img/hero-1.jpg');
+    overflow: hidden;
+    height: 600px;
+    background-size: cover;
+    background-position: center 10%;
+    position: relative;
+}
+
+.overlay {
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+    background-color: rgb(255 255 255 / 80%);
+}
+
+.card-title {
+    color: #5d6165 !important;
+}
