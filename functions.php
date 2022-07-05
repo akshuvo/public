@@ -314,7 +314,7 @@ function handle_uploads( $upload_files = [] ){
 			$FILE_URI = UPLOADS_DIR . $filename;
 
 			// File Url
-			$FILE_URL = sanitize_text_field( UPLOADS_URL . $filename );
+			$FILE_URL = sanitize_text_field( 'uploads/' . $filename );
 
 			if( !in_array( $upload_files['type'][$key], get_allowed_file_types() ) ){
 				die("Invalid file type.");

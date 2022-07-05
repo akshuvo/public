@@ -34,7 +34,7 @@ if( isset( $_SERVER["REQUEST_METHOD"] ) && $_SERVER["REQUEST_METHOD"] == "POST")
     // Validate credentials
     if( empty( $username_err ) && empty( $password_err ) ){
      
-        $query = dbconn()->query( "SELECT id, email, password FROM Users WHERE email = '$username'" );
+        $query = dbconn()->query( "SELECT id, email, password FROM Users WHERE email = '$username' ORDER BY id DESC" );
         $get_users = $query->fetch_assoc();
        
         if( $query->num_rows > 0 ){
@@ -64,11 +64,11 @@ if( isset( $_SERVER["REQUEST_METHOD"] ) && $_SERVER["REQUEST_METHOD"] == "POST")
           
         } else{
             // Error msg
-            $login_err = "Invalid username or password.";
+            $login_err = "Invalid username or password. (no data)";
         }
     } else{
         // Error msg
-        $login_err = "Invalid username or password.";
+        $login_err = "username or password is empty.";
     }
     
     // Close connection

@@ -163,7 +163,7 @@ $get_images = hw_get_images( $args['images'] );
 			              		<div class="col-3">
 								  	<div class="border hwd-image-wrap">
 								  		<a class="remove-image"><i class="bi bi-x-square"></i></a>
-								  		<img src="<?php echo $image['url']; ?>" class="figure-img img-fluid rounded">
+								  		<img src="<?php echo home_url('/') . $image['url']; ?>" class="figure-img img-fluid rounded">
 								  	</div>
 								</div>
 							<?php endforeach; ?>

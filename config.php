@@ -2,7 +2,7 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 
-if ( trim( $_SERVER['SERVER_NAME'] ) == 'heplingwall.local' ) {
+if ( trim( $_SERVER['SERVER_NAME'] ) == 'helpingwall.local' ) {
     /** The name of the database for Project */
     define( 'DB_NAME', 'local' );
 

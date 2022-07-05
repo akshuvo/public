@@ -16,7 +16,7 @@ $get_images = hw_get_images( $args['images'] );
 
                                             <?php foreach( $get_images as $key => $val ) : ?>
                                                 <div class="carousel-item <?php echo $key == "0" ? ' active ' : ' ';  ?>">
-                                                    <img src="<?php echo $val['url']; ?>" class="obfit-contain d-block w-100" height="110">
+                                                    <img src="<?php echo home_url('/') . $val['url']; ?>" class="obfit-contain d-block w-100" height="110">
                                                 </div>
                                             <?php endforeach; ?>
                                            
