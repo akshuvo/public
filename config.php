@@ -1,23 +1,44 @@
 <?php
 
 // ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for Project */
-define( 'DB_NAME', 'local' );
 
-/** MySQL database username */
-define( 'DB_USER', 'root' );
+if ( trim( $_SERVER['SERVER_NAME'] ) == 'heplingwall.local' ) {
+    /** The name of the database for Project */
+    define( 'DB_NAME', 'local' );
 
-/** MySQL database password */
-define( 'DB_PASSWORD', 'root' );
+    /** MySQL database username */
+    define( 'DB_USER', 'root' );
 
-/** MySQL hostname */
-define( 'DB_HOST', 'localhost' );
+    /** MySQL database password */
+    define( 'DB_PASSWORD', 'root' );
+
+    /** MySQL hostname */
+    define( 'DB_HOST', 'localhost' );
+
+} else {
+    // Production Defines
+    define( 'DB_NAME', 'addojxhp_helpingwall' );
+
+    /** MySQL database username */
+    define( 'DB_USER', 'addojxhp_helpingwall' );
+
+    /** MySQL database password */
+    define( 'DB_PASSWORD', 'helpingwall' );
+
+    /** MySQL hostname */
+    define( 'DB_HOST', 'localhost' );
+    // End Productions
+}
+
+
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
 
 /** The Database Collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
+
+
 
  
 // /* Attempt to connect to MySQL database */
