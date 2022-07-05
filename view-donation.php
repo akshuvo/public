@@ -45,13 +45,13 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 				    
 				    <div class="carousel-inner">
 				        <div class="carousel-item active">
-				            <img src="https://heplingwall.local/uploads/demo.png" class="d-block w-100" alt="...">
+				            <img src="<?php echo home_url('/'); ?>/uploads/demo.png" class="d-block w-100" alt="...">
 				        </div>
 				        <div class="carousel-item">
-				            <img src="https://heplingwall.local/uploads/demo.png" class="d-block w-100" alt="...">
+				            <img src="<?php echo home_url('/'); ?>/uploads/demo.png" class="d-block w-100" alt="...">
 				        </div>
 				        <div class="carousel-item">
-				            <img src="https://heplingwall.local/uploads/demo.png" class="d-block w-100" alt="...">
+				            <img src="<?php echo home_url('/'); ?>/uploads/demo.png" class="d-block w-100" alt="...">
 				        </div>
 				    </div>
 				    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -242,7 +242,7 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 						<div class="card mb-3 position-relative">
 	                        <div class="row g-0">
 	                            <div class="col-md-3">
-	                            	<img src="https://heplingwall.local/uploads/demo.png" class="d-block h-100 w-100">
+	                            	<img src="<?php echo home_url('/'); ?>/uploads/demo.png" class="d-block h-100 w-100">
 	                            </div>
 	                            <div class="col-md-9 ">
 	                                <div class="card-body">
@@ -261,7 +261,7 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 						<div class="card mb-3 position-relative">
 	                        <div class="row g-0">
 	                            <div class="col-md-3">
-	                            	<img src="https://heplingwall.local/uploads/demo.png" class="d-block h-100 w-100">
+	                            	<img src="<?php echo home_url('/'); ?>/uploads/demo.png" class="d-block h-100 w-100">
 	                            </div>
 	                            <div class="col-md-9 ">
 	                                <div class="card-body">
@@ -280,7 +280,7 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 						<div class="card mb-3 position-relative">
 	                        <div class="row g-0">
 	                            <div class="col-md-3">
-	                            	<img src="https://heplingwall.local/uploads/demo.png" class="d-block h-100 w-100">
+	                            	<img src="<?php echo home_url('/'); ?>/uploads/demo.png" class="d-block h-100 w-100">
 	                            </div>
 	                            <div class="col-md-9 ">
 	                                <div class="card-body">
@@ -299,7 +299,7 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 						<div class="card mb-3 position-relative">
 	                        <div class="row g-0">
 	                            <div class="col-md-3">
-	                            	<img src="https://heplingwall.local/uploads/demo.png" class="d-block h-100 w-100">
+	                            	<img src="<?php echo home_url('/'); ?>/uploads/demo.png" class="d-block h-100 w-100">
 	                            </div>
 	                            <div class="col-md-9 ">
 	                                <div class="card-body">
