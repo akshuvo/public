@@ -20,7 +20,6 @@ if ( isset( $_POST['action'] ) && !empty( $_POST['action'] ) ) {
  */
 function hw_ajax_donation_add(){
 
-
 	// Upload Images
 	$product_images = isset( $_FILES['product-images'] ) ? $_FILES['product-images'] : array();
 	$images = handle_uploads( $product_images );
@@ -38,8 +37,7 @@ function hw_ajax_donation_add(){
 	// Add data to donation
 	$donation_id = add_donation( $_POST );
 
-	ppr( $donation_id );
-	
+	echo $donation_id;
 
 	die();
 }

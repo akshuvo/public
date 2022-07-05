@@ -43,6 +43,13 @@ jQuery(document).ready(function($){
 
     });
 
+    // Donation add handle
+    jQuery(document).on('hw_ajax_success_donation-add', function(e, data){
+        if ( data != "" ) {
+            window.location.reload()
+        }
+    });
+
     // Donation request handle
     jQuery(document).on('hw_ajax_success_donation_request_add', function(e, data){
         if ( data != "" ) {

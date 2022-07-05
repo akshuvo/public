@@ -141,18 +141,40 @@ final class dbconn{
         }
 
         $this->insert_id = 0;
+
      
         $fields  = '`' . implode( '`, `', array_keys( $data ) ) . '`';
         $values  = '"' . implode( '", "', array_values( $data ) ) . '"';
         
         // Build query
-        $sql = "UPDATE `$table` ($fields) VALUES ($values)";
+        $sql = "UPDATE `$table` SET ";
+        if ( !empty( $data ) ) {
 
-        // Run query
-        $db_query = $this->query( $sql, 'insert' );
+            // Data Loop
+            foreach ($data as $key => $value) {
+                $sql .= "`$key` = '$value', ";
+            }
 
-        // return insert id
-        return $this->insert_id;
+            // Trim last comma
+            $sql = trim($sql, ', ');
+            $sql = trim($sql, ',');
+            $sql .= " WHERE ";
+
+            // Data Loop
+            foreach ($where as $key => $value) {
+                $sql .= "`$key` = '$value' ";
+            }
+
+            $sql .= ";";
+
+
+            // Run query
+            $db_query = $this->query( $sql, 'insert' );
+
+            // return insert id
+            return $this->insert_id;
+        }
+
     }
 }
 

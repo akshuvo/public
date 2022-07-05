@@ -95,3 +95,7 @@ display: flex;justify-content: space-between;}
 .card:hover .action-btns {
     display: block;
 }
+
+.obfit-contain {
+    object-fit: contain;
+}

@@ -390,6 +390,12 @@ function add_donation( $args = [] ){
 	);
 
 	if( isset( $args['id'] ) && !empty( $args['id'] ) ) {
+
+		// skip image update
+		if ( empty( $insert_data['images'] ) ) {
+			unset( $insert_data['images'] );
+		}
+
 		// Insert
 		dbconn()->update( 'Donations', $insert_data, ['id' => $args['id']]);
 
@@ -614,4 +620,27 @@ if ( isset( $_GET['action'] ) && $_GET['action'] == 'donation-delete' ) {
 		dbconn()->query("DELETE FROM Donations WHERE id = $id");
 	}
 
+}
+
+// Cloth Types
+function hw_cloth_types(){
+	return [
+		'Shirt',
+		'T-Shirt',
+		'Pant',
+		'Suit',
+		'Jeans',
+		'Sweater',
+		'Coat',
+		'Jacket',
+		'Pajamas',
+		'Raincoat',
+		'Skirt',
+		'Sun Hat',
+		'Shawl',
+		'3 Pieces',
+		'Sharee',
+		'Kurti',
+		'Others',
+	];
 }

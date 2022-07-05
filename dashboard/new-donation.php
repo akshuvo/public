@@ -55,9 +55,15 @@ $get_images = hw_get_images( $args['images'] );
 			            <div class="form-floating mb-3">
 			                <select class="form-select" id="product-type" name="type" data-value="<?php echo $args['type']; ?>" required>
 				                <option value="">Choose...</option>
-				                <option>Pant</option>
-				                <option>Shirt</option>
-				                <option>Soyetar</option>
+				                <?php foreach( hw_cloth_types() as $type ) : 
+				                	$selected = '';
+				                	if ( $args['type'] == $type ) {
+				                		$selected = 'selected="selected"';
+				                	}
+				                	?>
+				                	<option <?php echo $selected; ?> ><?php echo esc_html( $type ); ?></option>
+				                <?php endforeach; ?>
+				                
 				            </select>
 			                <label for="product-type">Product Type</label>
 			            </div>
@@ -176,8 +182,15 @@ $get_images = hw_get_images( $args['images'] );
 			   	
 			   		<div class="form-floating mb-3">
 			            <select class="form-select" id="product-status" name="status" data-value="<?php echo $args['status']; ?>" required>
-			            	<?php foreach( hw_donation_statuses() as $sid => $sval ): ?>
-					            <option value="<?php echo esc_html( $sid ); ?>"><?php echo esc_html( $sval ); ?></option>
+			            	<?php foreach( hw_donation_statuses() as $sid => $sval ): 
+								$selected = '';
+								
+				                if ( $args['status'] == $sid ) {
+				                	$selected = 'selected="selected"';
+				                }
+
+			            		?>
+					            <option value="<?php echo esc_html( $sid ); ?>" <?php echo $selected; ?>><?php echo esc_html( $sval ); ?></option>
 					        <?php endforeach; ?>
 				        </select>
 			            <label for="product-status">Status</label>

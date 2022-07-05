@@ -1,5 +1,7 @@
 <?php include_once 'header.php'; ?>
 <?php
+$errors = '';
+
 // Current User Data
 $current_user = current_user();
 $current_user = hw_parse_args($current_user, get_user_db_default_args());
@@ -8,7 +10,7 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
     <div class="row align-items-center g-lg-5 py-5">
         <div class="col-md-10 mx-auto col-lg-8">
 
-            <?php if( !empty( $signup_err ) ) : ?>
+            <?php if( !empty( $errors ) ) : ?>
                 <div class="alert alert-warning alert-dismissible">
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     <strong>Error:</strong> Something went wrong, please check the informations again.
@@ -21,7 +23,6 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
                 </div>
                 <form method="post">
                     <div class="card-body">
-                    
 
                         <div class="form-floating mb-3">
                             <input class="form-control" id="inputFullName" type="text" name="full_name" placeholder="Enter your full name" value="<?php echo esc_html( $current_user['full_name'] ); ?>" required>
