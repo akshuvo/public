@@ -55,6 +55,10 @@ $get_images = hw_get_images( $args['images'] );
                                 <a class="small " target="_blank" href="<?php echo home_url('view-donation.php'); ?>?id=<?php echo base64_encode($args['id']); ?>">View</a>
                                 <a class="small delete-confirm" href="?action=donation-delete&id=<?php echo $args['id']; ?>">Delete</a>
                             </div>
+                        <?php else: ?>
+                            <div class="action-btns bottom-0 position-absolute end-0">
+                                <a class="small " target="_blank" href="<?php echo home_url('view-donation.php'); ?>?id=<?php echo base64_encode($args['id']); ?>">View</a>
+                            </div>
                         <?php endif; ?>
                     </div>
                 </div>
