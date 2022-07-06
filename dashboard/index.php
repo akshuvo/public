@@ -150,7 +150,7 @@
                     <div class="similar-donations">
                         <?php
                         // Get doncations
-                        $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE 1=1 ORDER BY id DESC LIMIT 4");
+                        $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE 1=1 ORDER BY id DESC LIMIT 3");
 
                         if( !empty( $donations ) ) : ?>
 
