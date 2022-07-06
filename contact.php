@@ -39,7 +39,7 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 
                         <div class="form-floating mb-3">
                             <textarea class="form-control" id="inputMsg"  name="message" style=" min-height: 200px; " required></textarea>
-                            <label for="inputMsg">Password</label>
+                            <label for="inputMsg">Your Message</label>
                         </div>
 
                     </div>
