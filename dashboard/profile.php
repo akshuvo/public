@@ -1,6 +1,12 @@
 <?php include_once 'header.php'; ?>
 <?php
-$user = current_user();
+
+if ( isset( $_GET['id'] ) ) {
+	$user_id = sanitize_text_field( $_GET['id'] );
+	$user = dbconn()->get_row("SELECT * FROM Users WHERE id = '$user_id'");
+} else {
+	$user = current_user();
+}
 
 // Parse args
 $user = hw_parse_args($user, get_user_db_default_args());
@@ -20,7 +26,7 @@ $user['password'] = '';
 
 			<div class="card shadow-lg border-0 rounded-lg">
 			    <div class="card-header">
-			        <h3 class="text-center font-weight-light my-4">Update your profile</h3>
+			        <h4 class="text-center font-weight-light my-4">Update profile of: <?php echo $user['full_name']; ?></h4>
 			    </div>
 			    <form method="post">
 			    	<div class="card-body">
