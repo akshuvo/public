@@ -151,7 +151,7 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 
 			<!-- Contact Information -->
 			<div class="card mb-5">
-				<div class="card-header"><strong>Location Info</strong></div>
+				<div class="card-header"><strong>Donation Info</strong></div>
       			<div class="card-body">
 			     	<ul class="list-unstyled cf-advert-list list-inline">
 			     		<li class="flex-wrap w-100"> 
