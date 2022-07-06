@@ -118,12 +118,14 @@ function is_admin(){
               Donation Requests
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo home_url('dashboard/users.php'); ?>">
-              <i class="bi bi-person"></i>
-              Users
-            </a>
-          </li>
+          <?php if( current_user_role('admin') ):  ?>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo home_url('dashboard/users.php'); ?>">
+                <i class="bi bi-person"></i>
+                Users
+              </a>
+            </li>
+          <?php endif; ?>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo home_url('dashboard/profile.php'); ?>">
               <i class="bi bi-person"></i>
