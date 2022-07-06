@@ -45,7 +45,7 @@ $users = dbconn()->get_results("SELECT * FROM Users WHERE 1=1 ORDER BY id ASC LI
 							                    <div class="d-flex flex-row user-info">
 							                    	<img class="rounded-circle" src="<?php echo home_url() . 'assets/img/img_avatar3.png';?>" width="40" height="40">
 							                        <div class="d-flex flex-column justify-content-start ms-2">
-							                        	<span class="d-block font-weight-bold name"><?php echo $req_args['full_name']; ?> <span class="badge bg-primary text-capitalize"><?php echo $req_args['user_role']; ?></span></span>
+							                        	<span class="d-block font-weight-bold name"><?php echo $req_args['full_name']; ?> <span class="badge bg-secondary text-capitalize"><?php echo $req_args['user_role']; ?></span></span>
 							                        	<small class="date text-black-50">Registered on - <?php echo hw_date( $req_args['dated'] ); ?></small>
 							                        </div>
 
@@ -53,7 +53,10 @@ $users = dbconn()->get_results("SELECT * FROM Users WHERE 1=1 ORDER BY id ASC LI
 							                        
 							                    </div>
 							                    <div class="mt-2">
-							                        <p class="comment-text"><?php echo $req_args['full_address'] . ' ' . $req_args['state'] . ' ' . $req_args['country']; ?></p>
+							                        <small class="date text-black-50"><?php echo $req_args['full_address'] . ' ' . $req_args['state'] . ' ' . $req_args['country']; ?></small>
+							                        <br>
+							                        <span><a href="tel:<?php echo esc_html( $req_args['phone'] ); ?>" class="small text-black-50"><?php echo esc_html( $req_args['phone'] ); ?></a></span> | 
+						    						<span><a href="mailto:<?php echo esc_html( $req_args['email'] ); ?>" class="small text-black-50"><?php echo esc_html( $req_args['email'] ); ?></a></span>
 							                    </div>
 							                </div>
 							               
@@ -61,12 +64,11 @@ $users = dbconn()->get_results("SELECT * FROM Users WHERE 1=1 ORDER BY id ASC LI
 							        </div>
 							    </div>
 						    </div>
-						    <small class="bottom-0 me-2 ms-3 position-absolute submitted-on text-black-50">
+						    <small class="bottom-0 end-0 me-2 ms-3 position-absolute submitted-on text-black-50">
 						    	
-						    	<span><a href="tel:<?php echo esc_html( $req_args['phone'] ); ?>"><?php echo esc_html( $req_args['phone'] ); ?></a></span> |
-						    	<span><a href="mailto:<?php echo esc_html( $req_args['email'] ); ?>"><?php echo esc_html( $req_args['email'] ); ?></a></span> |
-						    	<span><a href="<?php echo home_url('dashboard/profile.php'); ?>?id=<?php echo esc_html($req_args['id']); ?>">Edit</a></span> |
-						    	<span><a href="?action=user-delete&id=<?php echo esc_html($req_args['id']); ?>" class="delete-confirm">Delete</a></span>
+						    	
+						    	<span><a href="<?php echo home_url('dashboard/profile.php'); ?>?id=<?php echo esc_html($req_args['id']); ?>" class=" text-black-50">Edit</a></span> |
+						    	<span><a href="?action=user-delete&id=<?php echo esc_html($req_args['id']); ?>" class="text-black-50 delete-confirm">Delete</a></span>
 						    	
 						    </small>
 						</div>
