@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="col-md-9 ">
                                     <div class="card-body">
-                                        <h6 class="card-title">John Doe</h6>
+                                        <h6 class="card-title">Abdur Rouf</h6>
                                         <div class="card-text text-muted d-flex">
                                             <small class="text-truncate"><i class="bi bi-geo-alt"></i> Rajshahi Division, Bangladesh</small>
                                         </div>
@@ -97,9 +97,9 @@
                                 </div>
                                 <div class="col-md-9 ">
                                     <div class="card-body">
-                                        <h6 class="card-title">John Doe</h6>
+                                        <h6 class="card-title">Mahafuj Shah</h6>
                                         <div class="card-text text-muted d-flex">
-                                            <small class="text-truncate"><i class="bi bi-geo-alt"></i> Rajshahi Division, Bangladesh</small>
+                                            <small class="text-truncate"><i class="bi bi-geo-alt"></i> Dinajpur Division, Bangladesh</small>
                                         </div>
                                     </div>
                                 </div>
@@ -114,9 +114,9 @@
                                 </div>
                                 <div class="col-md-9 ">
                                     <div class="card-body">
-                                        <h6 class="card-title">John Doe</h6>
+                                        <h6 class="card-title">Rana Hoque</h6>
                                         <div class="card-text text-muted d-flex">
-                                            <small class="text-truncate"><i class="bi bi-geo-alt"></i> Rajshahi Division, Bangladesh</small>
+                                            <small class="text-truncate"><i class="bi bi-geo-alt"></i> Dhaka Division, Bangladesh</small>
                                         </div>
                                     </div>
                                 </div>
