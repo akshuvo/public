@@ -75,7 +75,7 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 			     	<h5 class="mb-3">More Details</h5>
 			       
       		
-			     	<h5 class="mb-3">Scania R-SRS L-CLASS R450 LA Streamline Highline Diesel</h5>
+			     	<h5 class="mb-3">1 T-Shirt available in Dhaka, Size: XXL</h5>
 					<div class="post-content clearfix">
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 						<blockquote><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p></blockquote>
@@ -198,7 +198,7 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 			<div class="card mb-5" id="donation-request-form">
 				<div class="card-header"><strong>Send Request to this</strong></div>
       			<div class="card-body">
-
+      				<?php if( !empty( get_current_user_id() ) ) : ?>
 			     	<form class="hw-ajax-form request-form" method="post">
 			     		<input type="hidden" name="action" value="donation_request_add">
 			     		<input type="hidden" name="donation_id" value="<?php echo $id; ?>">
@@ -226,6 +226,16 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 					        </button>
 					    </div>
 			     	</form>
+			     <?php else: ?>
+			     	<div class="text-center">
+		                <a target="_blank" href="<?php echo home_url('login.php'); ?>" class="btn btn-secondary me-2">Login</a>
+		                <span>OR</span>
+		                <a target="_blank" href="<?php echo home_url('signup.php'); ?>" class="ms-2 btn btn-warning">Sign-up</a>
+		            </div>
+			     	<div class="text-center mt-2">
+		                <small>Only logged-in user can sent request for a donation. </small>
+		            </div>
+			     <?php endif; ?>
 					
 			    </div>
 			</div>
@@ -237,83 +247,25 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 				<div class="card-header"><strong>More from this location</strong></div>
       			<div class="card-body">
 					<div class="similar-donations">
-						
-						<!-- Start Single Donation Small Grid -->
-						<div class="card mb-3 position-relative">
-	                        <div class="row g-0">
-	                            <div class="col-md-3">
-	                            	<img src="<?php echo home_url('/'); ?>/uploads/demo.png" class="d-block h-100 w-100">
-	                            </div>
-	                            <div class="col-md-9 ">
-	                                <div class="card-body">
-	                                    <h6 class="card-title">Candace Jackson in Thakurgaon</h6>
-	                                    <div class="card-text text-muted d-flex">
-	                                        <small class="me-3 whs-nowrap"><i class="bi bi-record-circle"></i> Soyetar Qty: 2</small>
-	                                        <small class="text-truncate"><i class="bi bi-geo-alt"></i> Rajshahi Division, Bangladesh</small>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <!-- End Single Donation Small Grid -->
-						
-						<!-- Start Single Donation Small Grid -->
-						<div class="card mb-3 position-relative">
-	                        <div class="row g-0">
-	                            <div class="col-md-3">
-	                            	<img src="<?php echo home_url('/'); ?>/uploads/demo.png" class="d-block h-100 w-100">
-	                            </div>
-	                            <div class="col-md-9 ">
-	                                <div class="card-body">
-	                                    <h6 class="card-title">Candace Jackson in Thakurgaon</h6>
-	                                    <div class="card-text text-muted d-flex">
-	                                        <small class="me-3 whs-nowrap"><i class="bi bi-record-circle"></i> Soyetar Qty: 2</small>
-	                                        <small class="text-truncate"><i class="bi bi-geo-alt"></i> Rajshahi Division, Bangladesh</small>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <!-- End Single Donation Small Grid -->
-						
-						<!-- Start Single Donation Small Grid -->
-						<div class="card mb-3 position-relative">
-	                        <div class="row g-0">
-	                            <div class="col-md-3">
-	                            	<img src="<?php echo home_url('/'); ?>/uploads/demo.png" class="d-block h-100 w-100">
-	                            </div>
-	                            <div class="col-md-9 ">
-	                                <div class="card-body">
-	                                    <h6 class="card-title">Candace Jackson in Thakurgaon</h6>
-	                                    <div class="card-text text-muted d-flex">
-	                                        <small class="me-3 whs-nowrap"><i class="bi bi-record-circle"></i> Soyetar Qty: 2</small>
-	                                        <small class="text-truncate"><i class="bi bi-geo-alt"></i> Rajshahi Division, Bangladesh</small>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <!-- End Single Donation Small Grid -->
-						
-						<!-- Start Single Donation Small Grid -->
-						<div class="card mb-3 position-relative">
-	                        <div class="row g-0">
-	                            <div class="col-md-3">
-	                            	<img src="<?php echo home_url('/'); ?>/uploads/demo.png" class="d-block h-100 w-100">
-	                            </div>
-	                            <div class="col-md-9 ">
-	                                <div class="card-body">
-	                                    <h6 class="card-title">Candace Jackson in Thakurgaon</h6>
-	                                    <div class="card-text text-muted d-flex">
-	                                        <small class="me-3 whs-nowrap"><i class="bi bi-record-circle"></i> Soyetar Qty: 2</small>
-	                                        <small class="text-truncate"><i class="bi bi-geo-alt"></i> Rajshahi Division, Bangladesh</small>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <!-- End Single Donation Small Grid -->
+			        <?php
+			        // Get doncations
+			        $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE 1=1 ORDER BY id DESC LIMIT 4");
 
+			        if( !empty( $donations ) ) : ?>
+
+			            <?php foreach(  $donations as $row ) : 
+
+			                // Donation default args
+			                $defaults_args = get_donation_default_args();
+
+			                // Parse args
+			                $args = hw_parse_args($row, $defaults_args); 
+
+			                get_template_part('donation-content-sm.php', $args);
+			                ?>
+	                		
+			            <?php endforeach; ?>
+			        <?php endif; ?>
 					</div>
 			    </div>
 			</div>
