@@ -94,30 +94,37 @@ function is_admin(){
               Dashboard
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo home_url('dashboard/all-items.php'); ?>">
-              <i class="bi bi-cash"></i>
-              All Donations
-            </a>
-          </li>
+
+          <?php if( current_user_role('admin') ):  ?>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo home_url('dashboard/all-items.php'); ?>">
+                <i class="bi bi-cash"></i>
+                All Donations
+              </a>
+            </li>
+          <?php endif; ?>
+
           <li class="nav-item">
             <a class="nav-link" href="<?php echo home_url('dashboard/my-items.php'); ?>">
               <i class="bi bi-cash-coin"></i>
               My Donations
             </a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="<?php echo home_url('dashboard/new-donation.php'); ?>">
               <i class="bi bi-folder-plus"></i>
               Add New
             </a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="<?php echo home_url('dashboard/requests.php'); ?>">
               <i class="bi bi-person-plus"></i>
               Donation Requests
             </a>
           </li>
+
           <?php if( current_user_role('admin') ):  ?>
             <li class="nav-item">
               <a class="nav-link" href="<?php echo home_url('dashboard/users.php'); ?>">
@@ -126,6 +133,7 @@ function is_admin(){
               </a>
             </li>
           <?php endif; ?>
+          
           <li class="nav-item">
             <a class="nav-link" href="<?php echo home_url('dashboard/profile.php'); ?>">
               <i class="bi bi-person"></i>
