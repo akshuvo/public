@@ -61,7 +61,7 @@ $donation_req = dbconn()->get_results("SELECT * FROM DonationRequests WHERE 1=1 
 							        </div>
 							    </div>
 						    </div>
-						    <small class="bottom-0 end-0 me-2 position-absolute submitted-on text-black-50 text-end">
+						    <small class="bottom-0 me-2 ms-3 position-absolute submitted-on text-black-50">
 						    	<span>Submitted on: <a target="_blank" href="<?php echo home_url('view-donation.php'); ?>?id=<?php echo base64_encode($req_args['donation_id']); ?>"><?php echo esc_html( get_title( $req_args['donation_id'] ) ); ?></a></span> |
 						    	<span><a href="tel:<?php echo esc_html( $req_args['phone'] ); ?>"><?php echo esc_html( $req_args['phone'] ); ?></a></span> |
 						    	<span><a href="mailto:<?php echo esc_html( $req_args['email'] ); ?>"><?php echo esc_html( $req_args['email'] ); ?></a></span> 
