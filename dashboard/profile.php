@@ -73,6 +73,22 @@ $user['password'] = '';
 			                </div>
 			            </div>
 
+			            <?php if( current_user_role('admin') ):  ?>
+				            <div class="form-floating mb-3">
+				                <select class="form-select" id="user_role" name="user_role" data-value="<?php echo $user['user_role']; ?>">
+					                <?php foreach( hw_user_roles() as $role => $role_label ) : 
+					                	$selected = '';
+					                	if ( $user['user_role'] == $role ) {
+					                		$selected = 'selected="selected"';
+					                	}
+					                	?>
+					                	<option <?php echo $selected; ?> ><?php echo esc_html( $role_label ); ?></option>
+					                <?php endforeach; ?>
+					            </select>
+				                <label for="user_role">Role</label>
+				            </div>
+				        <?php endif; ?>
+
 			            <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
 			        
 			    	</div>

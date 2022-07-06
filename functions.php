@@ -644,3 +644,17 @@ function hw_cloth_types(){
 		'Others',
 	];
 }
+
+// User Roles
+function hw_user_roles(){
+	return [
+		'admin' => 'Admin',
+		'user' => 'User',
+	];
+}
+
+// Current User Roles
+function current_user_role( $role = '' ){
+	$current_user = current_user();
+	return isset( $current_user['user_role'] ) && $current_user['user_role'] == $role;
+}

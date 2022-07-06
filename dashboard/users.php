@@ -65,8 +65,8 @@ $users = dbconn()->get_results("SELECT * FROM Users WHERE 1=1 ORDER BY id ASC LI
 						    	
 						    	<span><a href="tel:<?php echo esc_html( $req_args['phone'] ); ?>"><?php echo esc_html( $req_args['phone'] ); ?></a></span> |
 						    	<span><a href="mailto:<?php echo esc_html( $req_args['email'] ); ?>"><?php echo esc_html( $req_args['email'] ); ?></a></span> |
-						    	<span><a target="_blank" href="<?php echo home_url('dashboard/profile.php'); ?>?id=<?php echo esc_html($req_args['id']); ?>">Edit</a></span> |
-						    	<span><a class="delete-confirm" href="?action=user-delete&id=<?php echo esc_html($req_args['id']); ?>">Delete</a></span>
+						    	<span><a href="<?php echo home_url('dashboard/profile.php'); ?>?id=<?php echo esc_html($req_args['id']); ?>">Edit</a></span> |
+						    	<span><a href="?action=user-delete&id=<?php echo esc_html($req_args['id']); ?>" class="delete-confirm">Delete</a></span>
 						    	
 						    </small>
 						</div>
