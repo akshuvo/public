@@ -136,7 +136,7 @@
                     <h6 class="mt-2">Donations by dates</h6>
                 </div>
                 <div class="card-body">
-                    <img src="https://heplingwall.local/uploads/stats.png" class="d-block h-100 w-100">
+                    <img src="<?php echo home_url(); ?>/uploads/stats.png" class="d-block h-100 w-100">
                 </div>
             </div>
         </div>
@@ -148,83 +148,25 @@
                 </div>
                 <div class="card-body">
                     <div class="similar-donations">
-                        
-                        <!-- Start Single Donation Small Grid -->
-                        <div class="card mb-3 position-relative">
-                            <div class="row g-0">
-                                <div class="col-md-2">
-                                    <img src="https://heplingwall.local/uploads/demo.png" class="d-block h-100 w-100">
-                                </div>
-                                <div class="col-md-9 ">
-                                    <div class="card-body">
-                                        <h6 class="card-title">Candace Jackson in Thakurgaon</h6>
-                                        <div class="card-text text-muted d-flex">
-                                            <small class="me-3 whs-nowrap"><i class="bi bi-record-circle"></i> Soyetar Qty: 2</small>
-                                            <small class="text-truncate"><i class="bi bi-geo-alt"></i> Rajshahi Division, Bangladesh</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Donation Small Grid -->
-                        
-                        <!-- Start Single Donation Small Grid -->
-                        <div class="card mb-3 position-relative">
-                            <div class="row g-0">
-                                <div class="col-md-2">
-                                    <img src="https://heplingwall.local/uploads/demo.png" class="d-block h-100 w-100">
-                                </div>
-                                <div class="col-md-9 ">
-                                    <div class="card-body">
-                                        <h6 class="card-title">Candace Jackson in Thakurgaon</h6>
-                                        <div class="card-text text-muted d-flex">
-                                            <small class="me-3 whs-nowrap"><i class="bi bi-record-circle"></i> Soyetar Qty: 2</small>
-                                            <small class="text-truncate"><i class="bi bi-geo-alt"></i> Rajshahi Division, Bangladesh</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Donation Small Grid -->
-                        
-                        <!-- Start Single Donation Small Grid -->
-                        <div class="card mb-3 position-relative">
-                            <div class="row g-0">
-                                <div class="col-md-2">
-                                    <img src="https://heplingwall.local/uploads/demo.png" class="d-block h-100 w-100">
-                                </div>
-                                <div class="col-md-9 ">
-                                    <div class="card-body">
-                                        <h6 class="card-title">Candace Jackson in Thakurgaon</h6>
-                                        <div class="card-text text-muted d-flex">
-                                            <small class="me-3 whs-nowrap"><i class="bi bi-record-circle"></i> Soyetar Qty: 2</small>
-                                            <small class="text-truncate"><i class="bi bi-geo-alt"></i> Rajshahi Division, Bangladesh</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Donation Small Grid -->
-                        
-                        <!-- Start Single Donation Small Grid -->
-                        <div class="card mb-3 position-relative">
-                            <div class="row g-0">
-                                <div class="col-md-2">
-                                    <img src="https://heplingwall.local/uploads/demo.png" class="d-block h-100 w-100">
-                                </div>
-                                <div class="col-md-9 ">
-                                    <div class="card-body">
-                                        <h6 class="card-title">Candace Jackson in Thakurgaon</h6>
-                                        <div class="card-text text-muted d-flex">
-                                            <small class="me-3 whs-nowrap"><i class="bi bi-record-circle"></i> Soyetar Qty: 2</small>
-                                            <small class="text-truncate"><i class="bi bi-geo-alt"></i> Rajshahi Division, Bangladesh</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Donation Small Grid -->
+                        <?php
+                        // Get doncations
+                        $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE 1=1 ORDER BY id DESC LIMIT 4");
 
+                        if( !empty( $donations ) ) : ?>
+
+                            <?php foreach(  $donations as $row ) : 
+
+                                // Donation default args
+                                $defaults_args = get_donation_default_args();
+
+                                // Parse args
+                                $args = hw_parse_args($row, $defaults_args); 
+
+                                get_template_part('donation-content-sm.php', $args);
+                                ?>
+                                
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -236,7 +178,7 @@
                     <h6 class="mt-2">Requests by dates</h6>
                 </div>
                 <div class="card-body">
-                    <img src="https://heplingwall.local/uploads/stats.png" class="d-block h-100 w-100">
+                    <img src="<?php echo home_url(); ?>/uploads/stats.png" class="d-block h-100 w-100">
                 </div>
             </div>
         </div>
