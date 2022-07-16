@@ -99,3 +99,6 @@ display: flex;justify-content: space-between;}
 .obfit-contain {
     object-fit: contain;
 }
+.obfit-cover {
+    object-fit: cover;
+}

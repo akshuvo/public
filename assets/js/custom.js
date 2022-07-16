@@ -46,7 +46,7 @@ jQuery(document).ready(function($){
     // Donation add handle
     jQuery(document).on('hw_ajax_success_donation-add', function(e, data){
         if ( data != "" ) {
-            window.location.reload()
+            window.location.href = `/dashboard/new-donation.php?id=${data}`;
         }
     });
 

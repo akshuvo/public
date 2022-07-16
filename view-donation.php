@@ -25,6 +25,9 @@ $get_images = hw_get_images( $args['images'] );
 $current_user = current_user();
 $current_user = hw_parse_args($current_user, get_user_db_default_args());
 
+// Type
+$type = $args['type'];
+$state = $args['state'];
 ?>
 <div class="page-title py-4 quick-search text-light mb-5">
     <div class="container">
@@ -242,7 +245,7 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
 					<div class="similar-donations">
 			        <?php
 			        // Get doncations
-			        $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE 1=1 ORDER BY id DESC LIMIT 4");
+			        $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE 1=1 AND state = '$state' AND id != $id ORDER BY id DESC LIMIT 4");
 
 			        if( !empty( $donations ) ) : ?>
 
@@ -282,7 +285,7 @@ $current_user = hw_parse_args($current_user, get_user_db_default_args());
         
         <?php
         // Get doncations
-        $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE 1=1 ORDER BY id DESC LIMIT 4");
+        $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE 1=1 AND type = '$type' AND id != $id ORDER BY id DESC LIMIT 4");
 
         if( !empty( $donations ) ) : ?>
 

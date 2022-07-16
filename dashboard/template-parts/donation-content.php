@@ -25,7 +25,7 @@ $get_images = hw_get_images( $args['images'] );
                                         <button class="carousel-control-next text-dark" type="button" data-bs-target="#carouselExampleControls-<?php echo $args['id']; ?>" data-bs-slide="next"><i class="bi bi-chevron-right"></i></button>
                                     </div>
                                 <?php else: ?>
-                                    <img class="no-image-found" src="<?php echo home_url() . 'assets/img/no-image-found.png';?>" height="110">
+                                    <img class="no-image-found  w-100 obfit-cover" src="<?php echo home_url() . 'assets/img/no-image-found.png';?>" height="110">
                                 <?php endif; ?>
 
                             </div>
