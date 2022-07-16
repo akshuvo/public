@@ -1,5 +1,14 @@
 <?php include_once 'header.php';?>
-
+<?php
+// Parse args
+$geo_args = hw_parse_args($_POST, [
+	'location'  => '',
+	'country'   => '',
+	'state'     => '',
+	'latitude'  => '',
+	'longitude' => '',
+]); 
+?>
   <!-- ========== MAIN CONTENT ========== -->
   <main class="hw-browse-with-maps">
     <!-- Content -->
@@ -11,7 +20,7 @@
 	   			<form class="hw-ajax-form hw_geo_wrap ">
 		   			<div class="hw-ajax-form hw_geo_wrap align-items-center bg-body d-flex p-4 shadow" method="post" autocomplete="off">
 		                <div class="input-group input-group-lg me-3">
-		                    <input id="push-geo-location" type="text" class="hw-geo-location form-control border-end-0" name="location" placeholder="Enter your full address" autocomplete="off" >
+		                    <input id="push-geo-location" type="text" class="hw-geo-location form-control border-end-0" name="location" placeholder="Enter your full address" autocomplete="off" value="<?php echo $geo_args['location'] ?>">
 		                    <a id="get-current-location" class="input-geo cursor-pointer bg-body input-group-text" title="Autofill your current location">
 		                        <i class="bi bi-geo-alt"></i>
 		                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
@@ -21,10 +30,10 @@
 
 		                <div id="map" class="d-none"></div>
 
-		                <input type="hidden" name="country" placeholder="Country">
-		                <input type="hidden" name="state" placeholder="State">
-		                <input type="hidden" name="latitude" placeholder="Latitude">
-		                <input type="hidden" name="longitude" placeholder="Longitude">
+		                <input type="hidden" name="country" placeholder="Country" value="<?php echo $geo_args['country'] ?>">
+		                <input type="hidden" name="state" placeholder="State" value="<?php echo $geo_args['state'] ?>">
+		                <input type="hidden" name="latitude" placeholder="Latitude" value="<?php echo $geo_args['latitude'] ?>">
+		                <input type="hidden" name="longitude" placeholder="Longitude" value="<?php echo $geo_args['longitude'] ?>">
 		                <input type="hidden" name="action" value="browse_map">
 		            </div>
 	            </form>
@@ -102,6 +111,11 @@
 
     	let data = JSON.parse( response );
 
+    	// Location html
+    	if ( data.html ) {
+    		jQuery('.hw-map-results-wrap').html( data.html );
+    	}
+
     	// Set locations
     	if ( data.locations ) {
     		locations = data.locations;
@@ -156,6 +170,8 @@
 
     
 jQuery(document).ready(function($){
-   
+	<?php if( !empty( $geo_args['latitude'] ) && !empty( $geo_args['longitude'] ) ) : ?>
+   	jQuery('.hw_geo_wrap').submit()
+ 	<?php endif; ?>
 });
 </script>

@@ -53,13 +53,25 @@ function hw_ajax_browse_map(){
 	$latitude  = isset( $_POST['latitude'] ) ? sanitize_text_field( $_POST['latitude'] ) : '';
 	$longitude = isset( $_POST['longitude'] ) ? sanitize_text_field( $_POST['longitude'] ) : '';
 
+	$query = "
+    	SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated,
+    	SQRT(
+    		POW(69.1 * (latitude - $latitude), 2) +
+    		POW(69.1 * ($longitude - longitude) * COS(latitude / 57.3), 2)) AS distance
+    	FROM Donations 
+    	HAVING distance < 25 
+		ORDER BY distance 
+		LIMIT 50";
+
 	// Get doncations
-    $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE 1=1 ORDER BY id DESC LIMIT 50");
+    $donations = dbconn()->get_results($query);
 
     // Response
     $response = [];
     $locations = [];
+    $location_html = '';
 
+    ob_start();
     if( !empty( $donations ) ) {
     	foreach(  $donations as $row ) {
 			// Donation default args
@@ -78,11 +90,14 @@ function hw_ajax_browse_map(){
             }
 
 
-            //get_template_part('donation-content.php', $args);
+            get_template_part('donation-content.php', $args);
         }
     }
 
+    $location_html = ob_get_clean();
+
     $response['locations'] = $locations;
+    $response['html'] = $location_html;
 
     // Send reponse
     echo json_encode( $response );
