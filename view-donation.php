@@ -148,9 +148,15 @@ $state = $args['state'];
       	<div class="col-md-4 col-lg-4">
 
       		<!-- Availability -->
-			<div class="bg-success py-3  text-center text-light mb-5">
-				<h4 class="m-0">Available</h4>
-			</div>
+      		<?php if( $args['is_active'] == "1" ): ?>
+				<div class="bg-success py-3  text-center text-light mb-5">
+					<h4 class="m-0">Available</h4>
+				</div>
+			<?php else: ?>
+				<div class="bg-warning py-3  text-center text-light mb-5">
+					<h4 class="m-0">Donated!</h4>
+				</div>
+			<?php endif; ?>
 
 			<!-- Contact Information -->
 			<div class="card mb-5">

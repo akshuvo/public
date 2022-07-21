@@ -196,6 +196,8 @@ $get_images = hw_get_images( $args['images'] );
 					        </select>
 				            <label for="product-availability">Availability</label>
 				        </div>
+				    <?php else: ?>
+				    	<input type="hidden" name="is_active" value="1">
 				    <?php endif; ?>
 
 			   		<div class="form-floating mb-3">
