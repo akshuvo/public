@@ -14,12 +14,9 @@
 
     <div class="row align-items-md-stretch">
 
-       
-
-        
         <?php
         // Get doncations
-        $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE 1=1 ORDER BY id DESC LIMIT 100");
+        $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE 1=1 AND status = '1' ORDER BY id DESC LIMIT 100");
 
         if( !empty( $donations ) ) : ?>
 

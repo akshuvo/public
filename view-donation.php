@@ -33,7 +33,7 @@ $state = $args['state'];
     <div class="container">
         <div class="flex-wrap">
             <div class="flex-left">
-                <h1 class="h4-size">1 T-Shirt available in Dhaka, Size: XXL</h1>
+                <h1 class="h4-size"><?php echo esc_html($args['title']); ?></h1>
             </div>
            
         </div>
@@ -261,6 +261,8 @@ $state = $args['state'];
 			                ?>
 	                		
 			            <?php endforeach; ?>
+			        <?php else: ?>
+        				<p>No similar donations are available at this moment.</p>
 			        <?php endif; ?>
 					</div>
 			    </div>
@@ -277,7 +279,7 @@ $state = $args['state'];
         <div class="col-md-12">
             <div class="align-items-center d-flex justify-content-between ">
                 <h1 class="m-0">Similar donations</h1>
-                <button class="btn btn-secondary">View All</button>
+                <a class="btn btn-secondary" href="<?php echo home_url('all-donations.php'); ?>">View All</a>
             </div>
             <hr>
         </div>
@@ -301,6 +303,8 @@ $state = $args['state'];
                 ?>
                 
             <?php endforeach; ?>
+        <?php else: ?>
+        	<p>No similar donations are available at this moment.</p>
         <?php endif; ?>
 
         

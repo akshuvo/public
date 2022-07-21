@@ -597,6 +597,13 @@ function hw_donation_statuses(){
 		'0' => 'Draft',
 	];
 }
+// Donation availability Statuses
+function hw_donation_availability_statuses(){
+	return [
+		'1' => 'Available',
+		'0' => 'Donated',
+	];
+}
 
 // Get donation title by id
 function get_title( $id ){

@@ -36,6 +36,12 @@ $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_acti
 		        			?>
 				        
 		        		<?php endforeach; ?>
+		        	<?php else: ?>
+		        		<div class="container-fluid py-5 text-center">
+		                    <h1 class="display-5 fw-bold  text-primary">No donations created yet!</h1>
+		                    <p class="fs-4 text-secondary">Add now and join the contributions.</p>
+		                    <a href="<?php echo home_url('dashboard/new-donation.php'); ?>" class="btn btn-outline-secondary">Add New</a>
+		                 </div>
 		        	<?php endif; ?>
 
 		     </div>

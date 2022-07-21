@@ -37,7 +37,7 @@
         <div class="col-md-12">
             <div class="align-items-center d-flex justify-content-between ">
                 <h1 class="m-0 text-secondary">Most recent donations</h1>
-                <button class="btn btn-secondary">View All</button>
+                <a class="btn btn-secondary" href="<?php echo home_url('all-donations.php'); ?>">View All</a>
             </div>
             <hr>
         </div>
@@ -45,7 +45,7 @@
         
         <?php
         // Get doncations
-        $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE 1=1 ORDER BY id DESC LIMIT 6");
+        $donations = dbconn()->get_results("SELECT id, title, type, qty, status, is_active, location, country, state, latitude, longitude, user_id, images, dated FROM Donations WHERE 1=1 AND status = '1' ORDER BY id DESC LIMIT 6");
 
         if( !empty( $donations ) ) : ?>
 

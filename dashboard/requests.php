@@ -6,7 +6,17 @@ $user_id = get_current_user_id();
 
 
 // Get donation requests
-$donation_req = dbconn()->get_results("SELECT * FROM DonationRequests WHERE 1=1 ORDER BY id ASC LIMIT 50");
+if( current_user_role('admin') ){
+	$donation_req = dbconn()->get_results("SELECT * FROM DonationRequests WHERE 1=1 ORDER BY id DESC LIMIT 50");
+
+} else {
+	
+	$donation_req = dbconn()->get_results("SELECT * 
+		FROM DonationRequests as dr 
+		INNER JOIN Donations as d ON dr.donation_id = d.id AND d.user_id = $user_id
+		WHERE 1=1 ORDER BY dr.id DESC LIMIT 50");
+}
+
 
 ?>
 <form class="hw-ajax-form" method="post" enctype="multipart/form-data">

@@ -120,8 +120,6 @@ function hw_ajax_donation_request_add(){
 
 	$request_id = add_update_donation_request( $_POST );
 
-ppr($request_id);
-
     // Send reponse
     echo $request_id;
 

@@ -179,7 +179,25 @@ $get_images = hw_get_images( $args['images'] );
 			        <h6 class="mt-2">Save</h6>
 			    </div>
 			    <div class="card-body">
-			   	
+			   		
+			   		<?php if( $id ) : ?>
+				   		<div class="form-floating mb-3">
+				            <select class="form-select" id="product-availability" name="is_active" required>
+				            	<?php foreach( hw_donation_availability_statuses() as $sid => $sval ): 
+									$selected = '';
+									
+					                if ( $args['is_active'] == $sid ) {
+					                	$selected = 'selected="selected"';
+					                }
+
+				            		?>
+						            <option value="<?php echo esc_html( $sid ); ?>" <?php echo $selected; ?>><?php echo esc_html( $sval ); ?></option>
+						        <?php endforeach; ?>
+					        </select>
+				            <label for="product-availability">Availability</label>
+				        </div>
+				    <?php endif; ?>
+
 			   		<div class="form-floating mb-3">
 			            <select class="form-select" id="product-status" name="status" data-value="<?php echo $args['status']; ?>" required>
 			            	<?php foreach( hw_donation_statuses() as $sid => $sval ): 
